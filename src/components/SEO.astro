@@ -1,0 +1,143 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  title = "SkyBlast - Professional Drone Cleaning Services | We Achieve the Impossible",
+  description = "SkyBlast's cutting-edge drone technology reaches the highest and most difficult places, ensuring thorough and safe cleaning for commercial and residential properties. Professional drone cleaning services.",
+  canonical = Astro.url.href,
+  image = "/og-image.jpg",
+  type = "website",
+  noindex = false
+} = Astro.props;
+
+// Construct full image URL
+const imageUrl = new URL(image, Astro.site || Astro.url.origin).href;
+const siteName = "SkyBlast";
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content="drone cleaning, professional cleaning services, high-rise cleaning, commercial cleaning, drone technology, safe cleaning, building maintenance, exterior cleaning, window cleaning, facade cleaning" />
+<meta name="author" content="SkyBlast" />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+<meta name="language" content="en" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content="SkyBlast drone cleaning services in action" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={imageUrl} />
+<meta property="twitter:image:alt" content="SkyBlast drone cleaning services in action" />
+
+<!-- Additional Meta Tags -->
+<meta name="theme-color" content="#0ea5e9" />
+<meta name="msapplication-TileColor" content="#0ea5e9" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="SkyBlast" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SkyBlast",
+    "url": canonical,
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/favicon.ico", Astro.site || Astro.url.origin).href
+    },
+    "description": description,
+    "sameAs": [],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Drone Cleaning Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Professional Drone Cleaning",
+            "description": "Advanced drone technology for cleaning high-rise buildings, commercial properties, and hard-to-reach areas"
+          }
+        }
+      ]
+    }
+  }
+</script>
+
+<!-- Service Structured Data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Professional Drone Cleaning Services",
+    "description": "Our drone technology reaches the highest and most difficult places, ensuring thorough and safe cleaning.",
+    "provider": {
+      "@type": "Organization",
+      "name": "SkyBlast",
+      "url": canonical
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "serviceType": "Cleaning Services",
+    "category": "Professional Cleaning",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Drone Cleaning Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "High-Rise Building Cleaning",
+            "description": "Safe and efficient cleaning of tall buildings using advanced drone technology"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Property Cleaning",
+            "description": "Comprehensive exterior cleaning for commercial properties"
+          }
+        }
+      ]
+    }
+  }
+</script>

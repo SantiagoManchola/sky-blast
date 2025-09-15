@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://skyblast.com/sitemap-index.xml
+Sitemap: https://skyblast.com/sitemap-0.xml
+
+# Crawl-delay for courtesy
+Crawl-delay: 1
+
+# Block access to admin or private areas (add as needed)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all search engines to crawl
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

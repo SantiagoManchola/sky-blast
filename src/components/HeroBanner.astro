@@ -1,0 +1,308 @@
+---
+import bgBanner from "../assets/bg-banner.jpg";
+import leftArrow from "../assets/icons/left.svg";
+import rightArrow from "../assets/icons/right.svg";
+---
+
+<section class="relative h-screen overflow-hidden">
+  <!-- Background Image -->
+  <div
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={`background-image: url(${bgBanner.src})`}
+  >
+    <!-- Gradient overlay matching the design -->
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(-99.42deg, rgba(255, 255, 255, 0) 44.81%, #FFFFFF 77.89%);"
+    >
+    </div>
+  </div>
+
+  <!-- Swiper Container -->
+  <div class="hero-swiper relative z-10 h-full">
+    <!-- Navigation Arrows positioned above the content -->
+    <div
+      class="absolute w-12 h-12 lg:w-16 lg:h-16 left-4 sm:left-6 lg:left-8 top-20 lg:top-24 z-30 flex items-center space-x-4"
+    >
+      <img
+        src={leftArrow.src}
+        alt="Previous"
+        class="swiper-button-prev relative w-6 h-6 lg:w-8 lg:h-8 group-hover:scale-110 transition-transform duration-300"
+      />
+
+      <img
+        src={rightArrow.src}
+        alt="Next"
+        class="swiper-button-next relative w-6 h-6 lg:w-8 lg:h-8 group-hover:scale-110 transition-transform duration-300"
+      />
+    </div>
+
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div class="h-full flex items-end pb-20 lg:pb-32">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl">
+              <h1
+                class="mb-6 font-heading font-bold text-[80px] leading-none uppercase"
+              >
+                <span class="block text-rich-black">WE ACHIEVE</span>
+                <span class="block text-orange-crayola">THE IMPOSSIBLE</span>
+              </h1>
+              <p
+                class="mb-8 max-w-2xl font-body text-2xl leading-none text-rich-black"
+              >
+                Our drone technology reaches the highest and most difficult
+                places, ensuring thorough and safe cleaning.
+              </p>
+              <button
+                class="text-white px-4 py-3 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-uranian-blue font-body font-bold text-base leading-none"
+              >
+                Get it
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="h-full flex items-end pb-20 lg:pb-32">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl">
+              <h1
+                class="mb-6 font-heading font-bold text-[80px] leading-none uppercase"
+              >
+                <span class="block text-rich-black">PROFESSIONAL</span>
+                <span class="block text-orange-crayola">DRONE CLEANING</span>
+              </h1>
+              <p
+                class="mb-8 max-w-2xl font-body text-2xl leading-none text-rich-black"
+              >
+                Advanced technology and expert operators for comprehensive
+                building maintenance and facade cleaning services.
+              </p>
+              <button
+                class="text-white px-4 py-3 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-uranian-blue font-body font-bold text-base leading-none"
+              >
+                Get it
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <div class="h-full flex items-end pb-20 lg:pb-32">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl">
+              <h1
+                class="mb-6 font-heading font-bold text-[80px] leading-none uppercase"
+              >
+                <span class="block text-rich-black">SAFE & EFFICIENT</span>
+                <span class="block text-orange-crayola">SOLUTIONS</span>
+              </h1>
+              <p
+                class="mb-8 max-w-2xl font-body text-2xl leading-none text-rich-black"
+              >
+                Cutting-edge drone technology for safe, efficient, and
+                eco-friendly cleaning solutions across Florida.
+              </p>
+              <button
+                class="text-white px-4 py-3 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-uranian-blue font-body font-bold text-base leading-none"
+              >
+                Get it
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp Float Button -->
+<div class="fixed bottom-6 right-6 z-50">
+  <a
+    href="https://wa.me/15551234567"
+    target="_blank"
+    class="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+    aria-label="Contact us on WhatsApp"
+  >
+    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"
+      ></path>
+    </svg>
+  </a>
+</div>
+
+<!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<script>
+  import { Swiper } from "swiper/bundle";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper(".hero-swiper", {
+      // Enable loop mode with minimum 3 slides
+      loop: true,
+
+      // Slides per view
+      slidesPerView: 1,
+      spaceBetween: 0,
+
+      // Auto-play settings
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      // Transition effects
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true,
+      },
+
+      // Speed of transition
+      speed: 800,
+
+      // Responsive breakpoints
+      breakpoints: {
+        // Mobile
+        320: {
+          autoplay: {
+            delay: 4000,
+          },
+        },
+        // Tablet
+        768: {
+          autoplay: {
+            delay: 5000,
+          },
+        },
+        // Desktop
+        1024: {
+          autoplay: {
+            delay: 6000,
+          },
+        },
+      },
+    });
+
+    // Smooth scroll for Get it button
+    const getItButtons = document.querySelectorAll("button");
+    getItButtons.forEach((button) => {
+      if (button.textContent?.includes("Get it")) {
+        button.addEventListener("click", () => {
+          const contactSection = document.getElementById("contact");
+          if (contactSection) {
+            const headerHeight =
+              document.querySelector("header")?.offsetHeight || 0;
+            const targetPosition = contactSection.offsetTop - headerHeight;
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    margin: auto;
+  }
+  /* Custom Swiper Styles */
+  .hero-swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Responsive text sizing */
+  @media (max-width: 640px) {
+    .hero-swiper h1 {
+      font-size: 48px !important;
+      line-height: 100% !important;
+    }
+
+    .hero-swiper p {
+      font-size: 18px !important;
+      margin-bottom: 2rem;
+    }
+
+    .hero-swiper button {
+      padding: 12px 24px !important;
+      font-size: 14px !important;
+    }
+
+    .hero-swiper .absolute.-top-16 {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      margin-bottom: 2rem;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-swiper h1 {
+      font-size: 60px !important;
+    }
+
+    .hero-swiper p {
+      font-size: 20px !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-swiper h1 {
+      font-size: 80px !important;
+    }
+
+    .hero-swiper p {
+      font-size: 24px !important;
+    }
+  }
+
+  /* Smooth animations on load */
+  .hero-swiper h1,
+  .hero-swiper p,
+  .hero-swiper button {
+    animation: fadeInUp 1s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

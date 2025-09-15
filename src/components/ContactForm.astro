@@ -1,0 +1,464 @@
+---
+import contactImage from "../assets/contact.jpg";
+---
+
+<section id="contact" class="py-16 lg:py-24 bg-accent/5">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Image -->
+      <div
+        class="relative order-2 lg:order-1 h-full flex justify-center lg:justify-start"
+      >
+        <div
+          class="rounded-2xl overflow-hidden h-full w-4/5 aspect-[3/4] lg:aspect-auto"
+        >
+          <img
+            src={contactImage.src}
+            alt="Professional drone cleaning services"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="order-1 lg:order-2 lg:py-16">
+        <div class="max-w-lg">
+          <h2
+            class="font-heading text-3xl lg:text-5xl font-bold text-secondary mb-6"
+          >
+            Contact Us
+          </h2>
+
+          <form id="contact-form" novalidate>
+            <!-- Name Field -->
+            <div>
+              <label
+                for="name"
+                class="block font-body text-sm font-medium text-gray-700 mb-2"
+              >
+                Complete Name*
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body"
+                placeholder="Complete name"
+              />
+              <span class="error-message text-red-500 text-sm block h-5"></span>
+            </div>
+
+            <!-- Email Field -->
+            <div>
+              <label
+                for="email"
+                class="block font-body text-sm font-medium text-gray-700 mb-2"
+              >
+                Email*
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body"
+                placeholder="example@gmail.com"
+              />
+              <span class="error-message text-red-500 text-sm block h-5"></span>
+            </div>
+
+            <!-- Location Dropdown -->
+            <div>
+              <label
+                for="location"
+                class="block font-body text-sm font-medium text-gray-700 mb-2"
+              >
+                Location*
+              </label>
+              <select
+                id="location"
+                name="location"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body bg-white"
+              >
+                <option value="">Select your city</option>
+                <option value="miami">Miami</option>
+                <option value="orlando">Orlando</option>
+                <option value="tampa">Tampa</option>
+                <option value="jacksonville">Jacksonville</option>
+                <option value="fort-myers">Fort Myers</option>
+                <option value="west-palm-beach">West Palm Beach</option>
+                <option value="sarasota">Sarasota</option>
+                <option value="tallahassee">Tallahassee</option>
+                <option value="other">Other (Please specify in message)</option>
+              </select>
+              <span class="error-message text-red-500 text-sm block h-5"></span>
+            </div>
+
+            <!-- Service Dropdown -->
+            <div>
+              <label
+                for="service"
+                class="block font-body text-sm font-medium text-gray-700 mb-2"
+              >
+                Service*
+              </label>
+              <select
+                id="service"
+                name="service"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body bg-white"
+              >
+                <option value="">Select your service</option>
+                <option value="facade-cleaning"
+                  >High-Rise Facade Cleaning</option
+                >
+                <option value="window-washing">High-Rise Window Washing</option>
+                <option value="roof-washing">Roof Washing</option>
+                <option value="solar-panel-cleaning"
+                  >Solar Panel Cleaning</option
+                >
+                <option value="gutter-cleaning">Gutter Cleaning</option>
+                <option value="pressure-washing">Pressure Washing</option>
+                <option value="multiple-services">Multiple Services</option>
+                <option value="consultation">Free Consultation</option>
+              </select>
+              <span class="error-message text-red-500 text-sm block h-5"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="text-white font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg font-body"
+              style="width: fit-content; height: 40px; padding: 8px 16px; gap: 10px; border-radius: 24px; opacity: 1; background-color: #000517;"
+              onmouseover="this.style.backgroundColor='#000517dd'"
+              onmouseout="this.style.backgroundColor='#000517'"
+            >
+              <span class="submit-text">Send</span>
+              <span class="loading-text hidden">Sending...</span>
+            </button>
+
+            <!-- Success/Error Messages -->
+            <!-- Professional notification will be created dynamically -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Professional Notification Container -->
+  <div id="notification-container" class="fixed top-4 right-4 z-50 space-y-4">
+    <!-- Notifications will be dynamically inserted here -->
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+
+    // Professional notification system
+    function createNotification(
+      message: string,
+      type: "success" | "error" | "info"
+    ) {
+      const container = document.getElementById("notification-container");
+      if (!container) return;
+
+      const notification = document.createElement("div");
+      notification.className = `
+        notification-toast
+        max-w-sm w-full
+        bg-white border-l-4 rounded-lg shadow-xl
+        transform transition-all duration-500 ease-in-out
+        translate-x-full opacity-0
+        p-4 relative
+        ${
+          type === "success"
+            ? "border-green-500"
+            : type === "error"
+              ? "border-red-500"
+              : "border-blue-500"
+        }
+      `;
+
+      const iconColor =
+        type === "success"
+          ? "text-green-500"
+          : type === "error"
+            ? "text-red-500"
+            : "text-blue-500";
+
+      const bgColor =
+        type === "success"
+          ? "bg-green-50"
+          : type === "error"
+            ? "bg-red-50"
+            : "bg-blue-50";
+
+      notification.innerHTML = `
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 rounded-full ${bgColor} flex items-center justify-center">
+              ${
+                type === "success"
+                  ? `
+                <svg class="w-5 h-5 ${iconColor}" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              `
+                  : type === "error"
+                    ? `
+                <svg class="w-5 h-5 ${iconColor}" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              `
+                    : `
+                <svg class="w-5 h-5 ${iconColor}" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+              `
+              }
+            </div>
+          </div>
+          <div class="ml-3 flex-1">
+            <p class="text-sm font-medium text-gray-900 leading-relaxed">
+              ${message}
+            </p>
+          </div>
+          <div class="ml-4 flex-shrink-0">
+            <button 
+              class="close-btn inline-flex text-gray-400 hover:text-gray-600 focus:outline-none transition-colors duration-200"
+              onclick="closeNotification(this)"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(notification);
+
+      // Animate in
+      setTimeout(() => {
+        notification.classList.remove("translate-x-full", "opacity-0");
+        notification.classList.add("translate-x-0", "opacity-100");
+      }, 100);
+
+      // Auto close after 5 seconds
+      setTimeout(() => {
+        closeNotification(notification.querySelector(".close-btn"));
+      }, 5000);
+    }
+
+    // Global function to close notifications
+    const closeNotification = function (button: HTMLElement | null) {
+      if (!button) return;
+      const notification = button.closest(".notification-toast");
+      if (notification) {
+        notification.classList.add("translate-x-full", "opacity-0");
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }
+    };
+
+    // Make function available globally for onclick handlers
+    (window as any).closeNotification = closeNotification;
+
+    // Form validation rules
+    interface ValidationRule {
+      required: boolean;
+      minLength?: number;
+      pattern?: RegExp;
+      message: string;
+    }
+
+    const validationRules: Record<string, ValidationRule> = {
+      name: {
+        required: true,
+        minLength: 2,
+        message: "Name must be at least 2 characters long",
+      },
+      email: {
+        required: true,
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        message: "Please enter a valid email address",
+      },
+      location: {
+        required: true,
+        message: "Please select your location",
+      },
+      service: {
+        required: true,
+        message: "Please select a service",
+      },
+    };
+
+    // Validation function
+    function validateField(field: HTMLInputElement | HTMLSelectElement) {
+      const rule = validationRules[field.name];
+      if (!rule) return true;
+
+      const errorElement = field.parentElement?.querySelector(
+        ".error-message"
+      ) as HTMLElement;
+      let isValid = true;
+      let message = "";
+
+      if (rule.required && !field.value.trim()) {
+        isValid = false;
+        message = rule.message;
+      } else if (
+        rule.pattern &&
+        field.value &&
+        !rule.pattern.test(field.value)
+      ) {
+        isValid = false;
+        message = rule.message;
+      } else if (rule.minLength && field.value.length < rule.minLength) {
+        isValid = false;
+        message = rule.message;
+      }
+
+      if (isValid) {
+        field.classList.remove("border-red-500");
+        field.classList.add("border-green-500");
+        errorElement.textContent = "";
+      } else {
+        field.classList.remove("border-green-500");
+        field.classList.add("border-red-500");
+        errorElement.textContent = message;
+      }
+
+      return isValid;
+    }
+
+    // Add real-time validation
+    const formFields = form.querySelectorAll("input, select");
+    formFields.forEach((field) => {
+      field.addEventListener("blur", () =>
+        validateField(field as HTMLInputElement | HTMLSelectElement)
+      );
+      field.addEventListener("input", () => {
+        if (field.classList.contains("border-red-500")) {
+          validateField(field as HTMLInputElement | HTMLSelectElement);
+        }
+      });
+    });
+
+    // Form submission
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Validate all fields
+      let isFormValid = true;
+      formFields.forEach((field) => {
+        if (!validateField(field as HTMLInputElement | HTMLSelectElement)) {
+          isFormValid = false;
+        }
+      });
+
+      if (!isFormValid) {
+        createNotification("Please fix the errors above.", "error");
+        return;
+      }
+
+      // Show loading state
+      const submitButton = form.querySelector(
+        'button[type="submit"]'
+      ) as HTMLButtonElement;
+      const submitText = submitButton.querySelector(
+        ".submit-text"
+      ) as HTMLElement;
+      const loadingText = submitButton.querySelector(
+        ".loading-text"
+      ) as HTMLElement;
+
+      submitButton.disabled = true;
+      submitText.classList.add("hidden");
+      loadingText.classList.remove("hidden");
+
+      // Collect form data
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        // Here you would typically send to your email service
+        // For demo purposes, we'll simulate a successful submission
+        await simulateFormSubmission(data);
+
+        createNotification(
+          "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.",
+          "success"
+        );
+        form.reset();
+
+        // Reset field styles
+        formFields.forEach((field) => {
+          field.classList.remove("border-green-500", "border-red-500");
+        });
+      } catch (error) {
+        createNotification(
+          "Sorry, there was an error sending your message. Please try again or contact us directly.",
+          "error"
+        );
+      } finally {
+        // Reset button state
+        submitButton.disabled = false;
+        submitText.classList.remove("hidden");
+        loadingText.classList.add("hidden");
+      }
+    });
+
+    // Simulate form submission (replace with actual email service integration)
+    async function simulateFormSubmission(data: Record<string, any>) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // Simulate 95% success rate
+          if (Math.random() > 0.05) {
+            console.log("Form submitted:", data);
+            resolve(data);
+          } else {
+            reject(new Error("Simulated error"));
+          }
+        }, 2000);
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Custom select arrow */
+  select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* Focus states */
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(240, 120, 69, 0.1);
+  }
+
+  /* Loading animation */
+  .loading-text {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+</style>

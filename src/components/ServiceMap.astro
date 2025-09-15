@@ -1,0 +1,185 @@
+---
+// No props needed
+---
+
+<section class="w-full">
+  <!-- Map Container - Full Width -->
+  <div id="florida-map" class="w-full h-96 lg:h-[600px] relative">
+    <!-- Loading state -->
+    <div class="absolute inset-0 flex items-center justify-center bg-gray-100">
+      <div class="text-center">
+        <div
+          class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"
+        >
+        </div>
+        <p class="text-gray-600">Loading service area map...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+<script>
+  declare global {
+    interface Window {
+      L: any;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Wait for Leaflet to load
+    if (typeof window.L === "undefined") {
+      setTimeout(() => {
+        initMap();
+      }, 500);
+    } else {
+      initMap();
+    }
+
+    function initMap() {
+      const L = window.L;
+
+      // Initialize the map - Center on Florida
+      const map = L.map("florida-map").setView([28.5, -82.0], 7);
+
+      // Add tile layer
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+        maxZoom: 18,
+      }).addTo(map);
+
+      // Custom marker icon - Larger and more visible
+      const serviceIcon = L.divIcon({
+        className: "custom-service-marker",
+        html: '<div class="service-pin"><div class="service-pulse"></div></div>',
+        iconSize: [32, 32], // Increased size
+        iconAnchor: [16, 16],
+      });
+
+      // Service locations - 15 counties in Florida
+      const serviceLocations = [
+        { name: "Brevard", coords: [28.2639, -80.7214] },
+        { name: "Citrus", coords: [28.8606, -82.4845] },
+        { name: "Hernando", coords: [28.5744, -82.4637] },
+        { name: "Hillsborough", coords: [27.9506, -82.4572] },
+        { name: "Indian River", coords: [27.6648, -80.4706] },
+        { name: "Lake", coords: [28.8031, -81.6081] },
+        { name: "Marion", coords: [29.1874, -82.104] },
+        { name: "Orange", coords: [28.5383, -81.3792] },
+        { name: "Osceola", coords: [28.1614, -81.0681] },
+        { name: "Pasco", coords: [28.3472, -82.3187] },
+        { name: "Pinellas", coords: [27.8661, -82.6404] },
+        { name: "Polk", coords: [28.0395, -81.7009] },
+        { name: "Seminole", coords: [28.6665, -81.2057] },
+        { name: "Sumter", coords: [28.7853, -82.0526] },
+        { name: "Volusia", coords: [29.0219, -81.1012] },
+      ];
+
+      // Add markers and coverage areas for each service location
+      serviceLocations.forEach((location) => {
+        // Add coverage circle first (so it appears behind the marker)
+        L.circle(location.coords, {
+          color: "#F07845", // Orange Crayola border
+          fillColor: "#F07845", // Orange Crayola fill
+          fillOpacity: 0.15, // Semi-transparent
+          weight: 3, // Border thickness
+          radius: 25000, // 25km radius coverage area
+        }).addTo(map);
+
+        // Add the marker on top
+        const marker = L.marker(location.coords, { icon: serviceIcon }).addTo(
+          map
+        );
+        marker.bindPopup(`
+          <div class="text-center p-3">
+            <h3 class="font-bold text-lg text-rich-black mb-2">${location.name} County</h3>
+            <p class="text-sm text-gray-600 mb-2">Professional Drone Cleaning Services</p>
+            <p class="text-xs text-uranian-blue font-medium">Available 24/7</p>
+          </div>
+        `);
+      });
+
+      // Disable map controls that might interfere with page scroll
+      map.scrollWheelZoom.disable();
+
+      // Enable scroll wheel zoom on click
+      map.on("click", function () {
+        map.scrollWheelZoom.enable();
+      });
+
+      // Disable scroll wheel zoom when mouse leaves map
+      map.on("mouseout", function () {
+        map.scrollWheelZoom.disable();
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Custom marker styles */
+  .custom-service-marker {
+    background: none;
+    border: none;
+  }
+
+  .service-pin {
+    width: 32px; /* Increased size */
+    height: 32px; /* Increased size */
+    border-radius: 50%;
+    background-color: #f07845; /* Orange Crayola */
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 0 6px rgba(240, 120, 69, 0.3); /* Larger shadow */
+    border: 4px solid white; /* Thicker border */
+  }
+
+  .service-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(240, 120, 69, 0.4);
+    transform: translate(-50%, -50%);
+    animation: servicePulse 2s infinite;
+  }
+
+  @keyframes servicePulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2.5);
+      opacity: 0;
+    }
+  }
+
+  /* Leaflet popup customization */
+  .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border: 2px solid #b3defb;
+  }
+
+  .leaflet-popup-tip {
+    background: white;
+  }
+
+  /* Map container */
+  #florida-map {
+    z-index: 1;
+  }
+</style>

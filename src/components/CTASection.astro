@@ -1,0 +1,68 @@
+---
+import aboutImage from "../assets/about.jpg";
+---
+
+<section class="relative py-24 overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src={aboutImage.src}
+      alt="Drone cleaning technology in action"
+      class="w-full h-full object-cover"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-center items-center min-h-[60vh]">
+      <!-- White Card -->
+      <div
+        class="bg-white rounded-2xl shadow-2xl p-8 sm:p-12 lg:p-16 max-w-4xl mx-auto text-center"
+      >
+        <!-- Main Heading -->
+        <h2
+          class="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-rich-black mb-6 leading-tight"
+        >
+          Discover Cleaning with Drones
+        </h2>
+
+        <!-- Subtitle -->
+        <p
+          class="font-body text-base sm:text-lg lg:text-xl xl:text-2xl text-rich-black/80 mb-8 lg:mb-12 max-w-3xl mx-auto leading-relaxed"
+        >
+          Generate curiosity and highlight the use of innovative technology.
+        </p>
+
+        <!-- Call to Action Button -->
+        <div class="flex justify-center">
+          <button
+            class="bg-uranian-blue hover:bg-uranian-blue/90 text-white font-bold px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl font-body"
+          >
+            Get it
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const ctaButton = document.querySelector("button");
+
+    // CTA button click - scroll to contact section
+    ctaButton?.addEventListener("click", () => {
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        const headerHeight =
+          document.querySelector("header")?.offsetHeight || 0;
+        const targetPosition = contactSection.offsetTop - headerHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+</script>
