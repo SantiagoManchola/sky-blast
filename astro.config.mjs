@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://skyblast.com", // Replace with your actual domain
+  site: "https://sky-blast.vercel.app", // Replace with your actual domain
   vite: {
     plugins: [tailwindcss()],
   },
@@ -18,7 +18,7 @@ export default defineConfig({
       entryLimit: 10000,
       serialize(item) {
         // Customize sitemap entries
-        if (item.url === "https://skyblast.com/") {
+        if (item.url === "https://sky-blast.vercel.app/") {
           item.priority = 1.0;
         }
         return item;
