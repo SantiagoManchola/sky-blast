@@ -146,25 +146,12 @@ const services = [
     opacity: 0.3;
   }
 
-  /* Animaciones para las tarjetas de servicio */
+  /* Animaciones para las tarjetas de servicio - SIN parpadeo */
   .service-card {
-    transform: translateY(20px);
-    opacity: 0;
-    animation: slideInUp 0.6s ease-out forwards;
-  }
-
-  .service-card:nth-child(1) { animation-delay: 0.1s; }
-  .service-card:nth-child(2) { animation-delay: 0.2s; }
-  .service-card:nth-child(3) { animation-delay: 0.3s; }
-  .service-card:nth-child(4) { animation-delay: 0.4s; }
-  .service-card:nth-child(5) { animation-delay: 0.5s; }
-  .service-card:nth-child(6) { animation-delay: 0.6s; }
-
-  @keyframes slideInUp {
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    /* Removemos las animaciones automáticas que causan parpadeo */
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.3s ease;
   }
 
   /* Efecto de hover mejorado */
@@ -250,144 +237,98 @@ const services = [
   document.addEventListener("DOMContentLoaded", () => {
     let swiperInstance: Swiper | null = null;
 
-    const initSwiper = () => {
-      const scrollbarThumb = document.querySelector(
-        ".services-scrollbar-thumb"
-      ) as HTMLElement;
-      const scrollbarContainer = document.querySelector(
-        ".services-scrollbar-container"
-      ) as HTMLElement;
+    const scrollbarThumb = document.querySelector(
+      ".services-scrollbar-thumb"
+    ) as HTMLElement;
+    const scrollbarContainer = document.querySelector(
+      ".services-scrollbar-container"
+    ) as HTMLElement;
 
-      swiperInstance = new Swiper(".services-swiper", {
-        slidesPerView: 1,
-        spaceBetween: 24,
-        autoHeight: false,
-        speed: 600,
-        effect: 'slide',
-        breakpoints: {
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 24,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 32,
-          },
+    swiperInstance = new Swiper(".services-swiper", {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      autoHeight: false,
+      speed: 500, // Velocidad más suave
+      effect: 'slide',
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 24,
         },
-        on: {
-          init: function() {
-            // Animar las tarjetas cuando el swiper esté listo
-            setTimeout(() => {
-              const serviceCards = document.querySelectorAll('.service-card');
-              serviceCards.forEach((card, index) => {
-                setTimeout(() => {
-                  (card as HTMLElement).style.animationPlayState = 'running';
-                }, index * 100);
-              });
-            }, 300);
-          },
-          slideChange: function (swiper) {
-            // Update scrollbar position based on current slide
-            if (scrollbarThumb) {
-              const currentSlide = swiper.activeIndex;
-              const slidesPerView =
-                (swiper.params.slidesPerView as number) || 1;
-              const totalSlides = swiper.slides.length;
-
-              // Calculate maximum slide index (last possible position)
-              const maxSlideIndex = Math.max(0, totalSlides - slidesPerView);
-
-              // Calculate thumb width (proportional to visible slides vs total)
-              const thumbWidth = (slidesPerView / totalSlides) * 100;
-
-              // Calculate thumb position (proportional to current position)
-              const thumbPosition =
-                maxSlideIndex > 0
-                  ? (currentSlide / maxSlideIndex) * (100 - thumbWidth)
-                  : 0;
-
-              scrollbarThumb.style.width = `${thumbWidth}%`;
-              scrollbarThumb.style.left = `${thumbPosition}%`;
-            }
-
-            // Animar nuevas tarjetas visibles
-            const visibleSlides = swiper.slides.slice(
-              swiper.activeIndex, 
-              swiper.activeIndex + (swiper.params.slidesPerView as number || 1)
-            );
-            
-            visibleSlides.forEach((slide, index) => {
-              const card = slide.querySelector('.service-card') as HTMLElement;
-              if (card) {
-                card.style.animation = 'none';
-                void card.offsetHeight; // Forzar reflow
-                card.style.animation = `slideInUp 0.6s ease-out forwards`;
-                card.style.animationDelay = `${index * 0.1}s`;
-              }
-            });
-          },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
         },
-      });
+      },
+      on: {
+        slideChange: function (swiper) {
+          // Update scrollbar position based on current slide
+          if (scrollbarThumb) {
+            const currentSlide = swiper.activeIndex;
+            const slidesPerView =
+              (swiper.params.slidesPerView as number) || 1;
+            const totalSlides = swiper.slides.length;
 
-      // Add click functionality to scrollbar
-      if (scrollbarContainer && swiperInstance) {
-        scrollbarContainer.addEventListener("click", (e) => {
-          if (!swiperInstance) return;
+            // Calculate maximum slide index (last possible position)
+            const maxSlideIndex = Math.max(0, totalSlides - slidesPerView);
 
-          const rect = scrollbarContainer.getBoundingClientRect();
-          const clickX = e.clientX - rect.left;
-          const containerWidth = rect.width;
-          const clickPercentage = clickX / containerWidth;
+            // Calculate thumb width (proportional to visible slides vs total)
+            const thumbWidth = (slidesPerView / totalSlides) * 100;
 
-          // Calculate which slide to go to based on click position
-          const slidesPerView =
-            (swiperInstance.params.slidesPerView as number) || 1;
-          const totalSlides = swiperInstance.slides.length;
-          const maxSlideIndex = Math.max(0, totalSlides - slidesPerView);
-          const targetSlide = Math.floor(clickPercentage * (maxSlideIndex + 1));
+            // Calculate thumb position (proportional to current position)
+            const thumbPosition =
+              maxSlideIndex > 0
+                ? (currentSlide / maxSlideIndex) * (100 - thumbWidth)
+                : 0;
 
-          swiperInstance.slideTo(Math.min(targetSlide, maxSlideIndex));
-        });
+            scrollbarThumb.style.width = `${thumbWidth}%`;
+            scrollbarThumb.style.left = `${thumbPosition}%`;
+          }
+          // Removemos las animaciones que causan parpadeo al cambiar slides
+        },
+      },
+    });
 
-        // Agregar efecto de hover animado
-        scrollbarContainer.addEventListener('mouseenter', () => {
-          scrollbarThumb.style.transform = 'scaleY(1.2)';
-        });
+    // Add click functionality to scrollbar
+    if (scrollbarContainer && swiperInstance) {
+      scrollbarContainer.addEventListener("click", (e) => {
+        if (!swiperInstance) return;
 
-        scrollbarContainer.addEventListener('mouseleave', () => {
-          scrollbarThumb.style.transform = 'scaleY(1)';
-        });
-      }
+        const rect = scrollbarContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const containerWidth = rect.width;
+        const clickPercentage = clickX / containerWidth;
 
-      // Initialize scrollbar position
-      if (scrollbarThumb && swiperInstance) {
+        // Calculate which slide to go to based on click position
         const slidesPerView =
           (swiperInstance.params.slidesPerView as number) || 1;
         const totalSlides = swiperInstance.slides.length;
-        const thumbWidth = (slidesPerView / totalSlides) * 100;
+        const maxSlideIndex = Math.max(0, totalSlides - slidesPerView);
+        const targetSlide = Math.floor(clickPercentage * (maxSlideIndex + 1));
 
-        scrollbarThumb.style.width = `${thumbWidth}%`;
-        scrollbarThumb.style.left = "0%";
-        scrollbarThumb.style.transition = 'all 0.3s ease';
-      }
-    };
+        swiperInstance.slideTo(Math.min(targetSlide, maxSlideIndex));
+      });
 
-    // Observar cuando la sección entre en vista para inicializar animaciones
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            initSwiper();
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      observer.observe(servicesSection);
-    } else {
-      // Fallback si no hay intersection observer
-      initSwiper();
+      // Agregar efecto de hover animado
+      scrollbarContainer.addEventListener('mouseenter', () => {
+        scrollbarThumb.style.transform = 'scaleY(1.2)';
+      });
+
+      scrollbarContainer.addEventListener('mouseleave', () => {
+        scrollbarThumb.style.transform = 'scaleY(1)';
+      });
+    }
+
+    // Initialize scrollbar position
+    if (scrollbarThumb && swiperInstance) {
+      const slidesPerView =
+        (swiperInstance.params.slidesPerView as number) || 1;
+      const totalSlides = swiperInstance.slides.length;
+      const thumbWidth = (slidesPerView / totalSlides) * 100;
+
+      scrollbarThumb.style.width = `${thumbWidth}%`;
+      scrollbarThumb.style.left = "0%";
+      scrollbarThumb.style.transition = 'all 0.3s ease';
     }
   });
 </script>

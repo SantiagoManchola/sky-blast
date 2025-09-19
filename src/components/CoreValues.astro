@@ -121,26 +121,14 @@ const coreValues = [
     transform: scale(1.2);
   }
 
-  /* Animaciones específicas para CoreValues */
+  /* Animaciones específicas para CoreValues - SIN parpadeo */
   .value-card {
     position: relative;
     overflow: hidden;
-    transform: translateY(20px);
-    opacity: 0;
-    animation: slideInUp 0.6s ease-out forwards;
-  }
-
-  .value-card:nth-child(1) { animation-delay: 0.1s; }
-  .value-card:nth-child(2) { animation-delay: 0.2s; }
-  .value-card:nth-child(3) { animation-delay: 0.3s; }
-  .value-card:nth-child(4) { animation-delay: 0.4s; }
-  .value-card:nth-child(5) { animation-delay: 0.5s; }
-
-  @keyframes slideInUp {
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    /* Removemos las animaciones automáticas que causan parpadeo */
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.3s ease;
   }
 
   /* Efecto de pulso en iconos */
@@ -166,21 +154,9 @@ const coreValues = [
     transform: translate(-50%, -50%) scale(1);
   }
 
-  /* Animación de aparición para las bullets del pagination */
+  /* Animación de aparición para las bullets del pagination - REMOVIDA para evitar parpadeo */
   .values-swiper .swiper-pagination-bullet {
-    animation: fadeInScale 0.5s ease-out forwards;
-    animation-delay: calc(var(--bullet-index, 0) * 0.1s);
-  }
-
-  @keyframes fadeInScale {
-    from {
-      opacity: 0;
-      transform: scale(0);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+    /* Sin animaciones de entrada */
   }
 
   /* Efecto de onda en el hover de las tarjetas */
@@ -257,102 +233,45 @@ const coreValues = [
   import { Pagination } from "swiper/modules";
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Observar cuando la sección entre en vista para inicializar animaciones
-    const coreValuesSection = document.querySelector('.values-swiper').closest('section');
-    
-    const initCoreValuesAnimations = () => {
-      const swiper = new Swiper(".values-swiper", {
-        modules: [Pagination],
-        slidesPerView: 1,
-        spaceBetween: 24,
-        autoHeight: false,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
+    const swiper = new Swiper(".values-swiper", {
+      modules: [Pagination],
+      slidesPerView: 1,
+      spaceBetween: 24,
+      autoHeight: false,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 24,
         },
-        breakpoints: {
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 24,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 32,
-          },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
         },
-        loop: false,
-        autoplay: false,
-        on: {
-          init: function() {
-            // Animar las tarjetas cuando el swiper esté listo
-            setTimeout(() => {
-              const valueCards = document.querySelectorAll('.value-card');
-              valueCards.forEach((card, index) => {
-                setTimeout(() => {
-                  (card as HTMLElement).style.animationPlayState = 'running';
-                }, index * 100);
-              });
-            }, 200);
+      },
+      loop: false,
+      autoplay: false,
+      speed: 500, // Velocidad más suave
+      // Removemos los eventos que causan parpadeo
+    });
 
-            // Animar los bullets del pagination
-            setTimeout(() => {
-              const bullets = document.querySelectorAll('.swiper-pagination-bullet');
-              bullets.forEach((bullet, index) => {
-                (bullet as HTMLElement).style.setProperty('--bullet-index', index.toString());
-              });
-            }, 500);
-          },
-          slideChange: function(swiper) {
-            // Animar las tarjetas visibles cuando cambie el slide
-            const visibleSlides = swiper.slides.slice(
-              swiper.activeIndex, 
-              swiper.activeIndex + (swiper.params.slidesPerView as number || 1)
-            );
-            
-            visibleSlides.forEach((slide, index) => {
-              const card = slide.querySelector('.value-card') as HTMLElement;
-              if (card) {
-                card.style.animation = 'none';
-                void card.offsetHeight; // Forzar reflow
-                card.style.animation = `slideInUp 0.6s ease-out forwards`;
-                card.style.animationDelay = `${index * 0.1}s`;
-              }
-            });
-          }
-        },
+    // Solo agregar efectos de hover a las bullets (sin animaciones de entrada)
+    const bullets = document.querySelectorAll('.swiper-pagination-bullet');
+    bullets.forEach(bullet => {
+      bullet.addEventListener('mouseenter', () => {
+        (bullet as HTMLElement).style.transform = 'scale(1.4)';
+        (bullet as HTMLElement).style.background = '#f07845';
       });
-
-      // Agregar efectos de hover mejorados a las bullets
-      const bullets = document.querySelectorAll('.swiper-pagination-bullet');
-      bullets.forEach(bullet => {
-        bullet.addEventListener('mouseenter', () => {
-          (bullet as HTMLElement).style.transform = 'scale(1.4)';
-          (bullet as HTMLElement).style.background = '#f07845';
-        });
-        
-        bullet.addEventListener('mouseleave', () => {
-          if (!bullet.classList.contains('swiper-pagination-bullet-active')) {
-            (bullet as HTMLElement).style.transform = 'scale(1)';
-            (bullet as HTMLElement).style.background = 'rgba(179, 222, 251, 0.4)';
-          }
-        });
-      });
-    };
-
-    if (coreValuesSection) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            initCoreValuesAnimations();
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
       
-      observer.observe(coreValuesSection);
-    } else {
-      // Fallback si no hay intersection observer
-      initCoreValuesAnimations();
-    }
+      bullet.addEventListener('mouseleave', () => {
+        if (!bullet.classList.contains('swiper-pagination-bullet-active')) {
+          (bullet as HTMLElement).style.transform = 'scale(1)';
+          (bullet as HTMLElement).style.background = 'rgba(179, 222, 251, 0.4)';
+        }
+      });
+    });
   });
 </script>
