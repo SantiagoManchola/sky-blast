@@ -1,0 +1,142 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Privacy and Personal Data Disclaimer - Sky Blast">
+  <Header />
+
+  <main class="min-h-screen bg-white">
+    <!-- Content Section -->
+    <section class="py-16 lg:py-24">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="prose prose-lg max-w-none">
+            <!-- Introduction -->
+            <div
+              class="bg-blue-50 border-l-4 border-primary p-6 rounded-r-lg mb-8"
+            >
+              <p class="text-lg font-medium text-secondary mb-4">
+                This website may collect and process certain personal
+                information provided voluntarily by users (such as name, email
+                address, or other contact details) solely for the purpose of
+                delivering requested services, improving user experience, and
+                maintaining security.
+              </p>
+            </div>
+
+            <!-- Main Content -->
+            <div class="space-y-8">
+              <!-- Our Commitment -->
+              <div>
+                <h2
+                  class="font-heading text-2xl lg:text-3xl font-bold text-secondary mb-4"
+                >
+                  Our Commitment to Your Privacy
+                </h2>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                  We are committed to protecting your privacy and handling your
+                  personal data responsibly. Your information will not be sold,
+                  rented, or shared with third parties without your explicit
+                  consent, except where required by law or to comply with legal
+                  obligations.
+                </p>
+              </div>
+
+              <!-- Terms of Use -->
+              <div>
+                <h2
+                  class="font-heading text-2xl lg:text-3xl font-bold text-secondary mb-6"
+                >
+                  Terms of Use
+                </h2>
+                <p class="text-gray-700 leading-relaxed text-lg mb-6">
+                  By using this website, you acknowledge and agree that:
+                </p>
+
+                <div class="space-y-6">
+                  <!-- Point 1 -->
+                  <div class="flex items-start space-x-4">
+                    <div
+                      class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm"
+                    >
+                      1
+                    </div>
+                    <div>
+                      <p class="text-gray-700 leading-relaxed text-lg">
+                        Your personal data may be stored and processed in
+                        accordance with applicable data protection regulations.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Point 2 -->
+                  <div class="flex items-start space-x-4">
+                    <div
+                      class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm"
+                    >
+                      2
+                    </div>
+                    <div>
+                      <p class="text-gray-700 leading-relaxed text-lg">
+                        Reasonable security measures are implemented to protect
+                        your data, but no system is completely secure, and we
+                        cannot guarantee absolute protection against
+                        unauthorized access.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Point 3 -->
+                  <div class="flex items-start space-x-4">
+                    <div
+                      class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm"
+                    >
+                      3
+                    </div>
+                    <div>
+                      <p class="text-gray-700 leading-relaxed text-lg">
+                        You have the right to request access, correction, or
+                        deletion of your personal information at any time by
+                        contacting us directly.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Final Statement -->
+              <div class="bg-gray-50 p-8 rounded-lg border">
+                <h3 class="font-heading text-xl font-bold text-secondary mb-4">
+                  Acceptance of Terms
+                </h3>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                  Use of this website constitutes acceptance of this disclaimer
+                  and our privacy practices.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .prose h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose p {
+    margin-bottom: 1.5rem;
+  }
+</style>
