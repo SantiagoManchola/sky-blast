@@ -225,10 +225,10 @@ import rightArrow from "../assets/icons/right.svg";
         spaceBetween: 0,
 
         // Auto-play settings
-        // autoplay: {
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
 
         // Navigation arrows
         navigation: {
@@ -375,14 +375,21 @@ import rightArrow from "../assets/icons/right.svg";
       }
     }
 
-    /* Hero section height adjustment */
     .hero-height {
-      height: calc(100vh - 4rem); /* 4rem = h-16 del header */
+      height: calc(100vh - 4rem);
+    }
+
+    @media (min-width: 768px) {
+      .hero-height {
+        height: calc(100vh - 4rem);
+        min-height: 600px;
+      }
     }
 
     @media (min-width: 1024px) {
       .hero-height {
-        height: calc(100vh - 5rem); /* 5rem = lg:h-20 del header */
+        height: calc(100vh - 5rem);
+        min-height: 600px;
       }
     }
   </style>
