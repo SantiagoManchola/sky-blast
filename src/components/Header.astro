@@ -53,7 +53,6 @@ import skyBlastLogo from "../assets/sky-blast.png";
           type="button"
           class="mobile-menu-button p-2 rounded-md hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label="Toggle menu"
-          onclick="return false;"
         >
           <svg
             class="w-6 h-6 pointer-events-none"
@@ -114,8 +113,8 @@ import skyBlastLogo from "../assets/sky-blast.png";
     let isMenuOpen = false;
 
     if (mobileMenuButton && mobileMenu) {
-      // Ensure no default behavior
       mobileMenuButton.addEventListener("click", (e) => {
+        console.log("Menu button clicked"); // Debug log
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
@@ -139,17 +138,7 @@ import skyBlastLogo from "../assets/sky-blast.png";
           }, 300);
         }
 
-        // Explicitly return false to prevent any default action
-        return false;
-      });
-
-      // Additional safety: prevent any form of navigation
-      mobileMenuButton.addEventListener("mousedown", (e) => {
-        e.preventDefault();
-      });
-
-      mobileMenuButton.addEventListener("touchstart", (e) => {
-        e.preventDefault();
+        return false; // Extra safety
       });
     }
 
@@ -186,10 +175,20 @@ import skyBlastLogo from "../assets/sky-blast.png";
       }
     });
 
-    // Smooth scroll for navigation links
-    const allNavLinks = document.querySelectorAll('header a[href^="#"]');
+    // Smooth scroll for navigation links only (NOT the menu button)
+    const allNavLinks = document.querySelectorAll('nav a[href^="#"]');
     allNavLinks.forEach((link) => {
+      // Skip if it's the mobile menu button or any button
+      if (
+        link.tagName.toLowerCase() === "button" ||
+        link.classList.contains("mobile-menu-button") ||
+        link.closest(".mobile-menu-button")
+      ) {
+        return;
+      }
+
       link.addEventListener("click", (e) => {
+        console.log("Navigation link clicked:", link.getAttribute("href")); // Debug log
         e.preventDefault();
         const targetId = link.getAttribute("href")?.substring(1);
         const targetElement = document.getElementById(targetId || "");
