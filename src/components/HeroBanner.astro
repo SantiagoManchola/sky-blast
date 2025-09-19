@@ -21,17 +21,17 @@ import rightArrow from "../assets/icons/right.svg";
           style={`background-image: url(${bgBanner1.src})`}
         >
           <div
-            class="absolute inset-0"
+            class="absolute inset-0 overlay-gradient"
             style="background: linear-gradient(-99.42deg, rgba(255, 255, 255, 0) 44.81%, #FFFFFF 77.89%);"
           >
           </div>
         </div>
 
         <div
-          class="relative z-10 h-full flex items-end flex-col justify-between pb-12 lg:pb-16 w-full"
+          class="relative z-10 h-full flex items-end flex-col justify-between md:pb-12 lg:pb-16 w-full"
         >
           <div
-            class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-20 justify-center"
+            class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-4 lg:py-20 justify-end md:justify-center"
             data-stagger="200"
           >
             <div
@@ -53,23 +53,28 @@ import rightArrow from "../assets/icons/right.svg";
 
             <div class="max-w-2xl lg:max-w-3xl">
               <h1
-                class="font-bold text-[80px] uppercase align-middle text-black animate-on-scroll"
+                class="font-bold text-[40px] md:text-[80px] uppercase align-middle text-black animate-on-scroll"
                 data-animation="fade-up"
                 data-delay="300"
               >
                 WE ACHIEVE <br /><span
                   class="text-orange typewriter-effect"
                   data-text="THE IMPOSSIBLE"
-                  data-speed="80">THE IMPOSSIBLE</span
-                >
+                  data-speed="80"></span>
               </h1>
               <p
-                class="mb-8 text-normal text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
+                class="md:mb-8 text-normal text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
                 data-animation="fade-up"
                 data-delay="500"
               >
-                Our drone technology reaches the highest <br /> and most difficult
-                places, ensuring <br /> thorough and safe cleaning.
+                <span class="block md:hidden">
+                  Our drone technology reaches the highest and most difficult
+                  places, ensuring thorough and safe cleaning.
+                </span>
+                <span class="hidden md:block">
+                  Our drone technology reaches the highest <br /> and most difficult
+                  places, ensuring <br /> thorough and safe cleaning.
+                </span>
               </p>
               <button
                 class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none btn-animate hover-glow animate-on-scroll"
@@ -95,7 +100,7 @@ import rightArrow from "../assets/icons/right.svg";
         >
           <!-- Gradient overlay con 30% blanco completo -->
           <div
-            class="absolute inset-0"
+            class="absolute inset-0 overlay-gradient"
             style="background: linear-gradient(90deg, 
                      #FFFFFF 0%, 
                      #FFFFFF 45vw, 
@@ -105,10 +110,10 @@ import rightArrow from "../assets/icons/right.svg";
         </div>
 
         <div
-          class="relative z-10 h-full flex items-end flex-col justify-between pb-12 lg:pb-16 w-full"
+          class="relative z-10 h-full flex items-end flex-col justify-between md:pb-12 lg:pb-16 w-full"
         >
           <div
-            class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-20 justify-center"
+            class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-4 lg:py-20 justify-end md:justify-center"
             data-stagger="200"
           >
             <div
@@ -130,21 +135,28 @@ import rightArrow from "../assets/icons/right.svg";
 
             <div class="max-w-2xl lg:max-w-4xl">
               <h1
-                class="font-bold text-[80px] uppercase align-middle text-black animate-on-scroll"
+                class="font-bold text-[40px] md:text-[80px] uppercase align-middle text-black animate-on-scroll"
                 data-animation="slide-rotate"
                 data-delay="300"
               >
-                TAKING CLEANING <br /><span class="text-orange"
-                  >TO THE NEXT LEVEL</span
-                >
+                TAKING CLEANING <br /><span
+                  class="text-orange typewriter-effect"
+                  data-text="TO THE NEXT LEVEL"
+                  data-speed="90"></span>
               </h1>
               <p
-                class="mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
+                class="md:mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
                 data-animation="fade-up"
                 data-delay="500"
               >
-                Drone-powered cleaning services for <br /> buildings and facades
-                — faster, safer, and <br />more efficient.
+                <span class="block md:hidden">
+                  Drone-powered cleaning services for buildings and facades —
+                  faster, safer, and more efficient.
+                </span>
+                <span class="hidden md:block">
+                  Drone-powered cleaning services for <br /> buildings and facades
+                  — faster, safer, and <br />more efficient.
+                </span>
               </p>
               <button
                 class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none btn-animate hover-glow animate-on-scroll"
@@ -170,7 +182,7 @@ import rightArrow from "../assets/icons/right.svg";
         >
           <!-- Gradient overlay desde left 0 para desvanecido perfecto -->
           <div
-            class="absolute inset-0"
+            class="absolute inset-0 overlay-gradient"
             style="background: linear-gradient(90deg, 
                      #FFFFFF 0vw, 
                      #FFFFFF 65vw, 
@@ -180,10 +192,10 @@ import rightArrow from "../assets/icons/right.svg";
         </div>
 
         <div
-          class="relative z-10 h-full flex items-end flex-col justify-between pb-12 lg:pb-16 w-full"
+          class="relative z-10 h-full flex items-end flex-col justify-between md:pb-12 lg:pb-16 w-full"
         >
           <div
-            class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-20 justify-center"
+            class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-4 lg:py-20 justify-end md:justify-center"
             data-stagger="200"
           >
             <div
@@ -205,7 +217,7 @@ import rightArrow from "../assets/icons/right.svg";
 
             <div class="max-w-2xl lg:max-w-5xl">
               <h1
-                class="font-bold text-[80px] uppercase align-middle text-black animate-on-scroll"
+                class="font-bold text-[40px] md:text-[80px] uppercase align-middle text-black animate-on-scroll"
                 data-animation="fade-down"
                 data-delay="300"
               >
@@ -216,12 +228,18 @@ import rightArrow from "../assets/icons/right.svg";
                 >
               </h1>
               <p
-                class="mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
+                class="md:mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
                 data-animation="fade-up"
                 data-delay="500"
               >
-                Precision technology and sustainable <br /> processes to protect
-                your infrastructure <br /> and the environment.
+                <span class="block md:hidden">
+                  Precision technology and sustainable processes to protect your
+                  infrastructure and the environment.
+                </span>
+                <span class="hidden md:block">
+                  Precision technology and sustainable <br /> processes to protect
+                  your infrastructure <br /> and the environment.
+                </span>
               </p>
               <button
                 class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none btn-animate hover-glow animate-on-scroll"
@@ -288,7 +306,7 @@ import rightArrow from "../assets/icons/right.svg";
 
         // Auto-play settings
         autoplay: {
-          delay: 5000,
+          delay: 6000, // Aumentado para más tiempo entre slides
           disableOnInteraction: false,
         },
 
@@ -298,42 +316,51 @@ import rightArrow from "../assets/icons/right.svg";
           prevEl: ".swiper-button-prev",
         },
 
-        // Transition effects
-        effect: "fade",
-        fadeEffect: {
-          crossFade: true,
-        },
+        // Transition effects más suaves
+        effect: "slide",
 
-        // Speed of transition
-        speed: 800,
+        // Speed of transition más lento y suave
+        speed: 1200, // Más lento para suavidad
 
-        // Callbacks para reactivar animaciones en cambio de slide
+        // Callbacks simplificados sin reactivar animaciones complejas
         on: {
-          slideChange: function () {
-            // Reset y reactiva animaciones para el slide actual
-            const activeSlide = this.slides[this.activeIndex];
+          slideChange: function (swiper) {
+            // Solo reiniciar typewriter effects en el slide activo
+            const activeSlide = swiper.slides[swiper.activeIndex];
             if (activeSlide) {
-              const animatedElements =
-                activeSlide.querySelectorAll(".animate-on-scroll");
-              animatedElements.forEach((element) => {
-                // Remover clases de animación
-                element.classList.remove(
-                  "animate-fade-up",
-                  "animate-fade-down",
-                  "animate-fade-left",
-                  "animate-fade-right",
-                  "animate-scale-in",
-                  "animate-slide-rotate",
-                  "animate-fade-in"
-                );
+              const typewriterElements =
+                activeSlide.querySelectorAll(".typewriter-effect");
+              typewriterElements.forEach((element: any) => {
+                if (!element.classList.contains("typed")) {
+                  element.classList.add("typed");
+                  const htmlElement = element as HTMLElement;
 
-                // Forzar reflow y reagregar
-                void element.offsetWidth;
+                  setTimeout(() => {
+                    if (
+                      (window as any).AnimationUtils &&
+                      typeof (window as any).AnimationUtils.typeWriter ===
+                        "function"
+                    ) {
+                      (window as any).AnimationUtils.typeWriter(element);
+                    } else {
+                      // Fallback typewriter
+                      const text = htmlElement.dataset.text || "";
+                      const speed =
+                        parseInt(htmlElement.dataset.speed || "80") || 80;
 
-                setTimeout(() => {
-                  const animationType = element.dataset.animation || "fade-up";
-                  element.classList.add(`animate-${animationType}`);
-                }, 100);
+                      element.textContent = "";
+                      let i = 0;
+                      const timer = setInterval(() => {
+                        if (i < text.length) {
+                          element.textContent += text.charAt(i);
+                          i++;
+                        } else {
+                          clearInterval(timer);
+                        }
+                      }, speed);
+                    }
+                  }, 800); // Delay para que se vea la transición primero
+                }
               });
             }
           },
@@ -382,58 +409,69 @@ import rightArrow from "../assets/icons/right.svg";
         }
       });
 
-      // Configurar efectos de typewriter cuando se activen
-      const typewriterElements =
-        document.querySelectorAll(".typewriter-effect");
-      typewriterElements.forEach((element) => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (
-                entry.isIntersecting &&
-                !element.classList.contains("typed")
-              ) {
-                element.classList.add("typed");
-                const htmlElement = element as HTMLElement;
-                // Verificar que AnimationUtils esté disponible y tenga la función
+      // Configurar efectos de typewriter - mejorado para evitar duplicaciones
+      const initTypewriter = () => {
+        const typewriterElements =
+          document.querySelectorAll(".typewriter-effect");
+        typewriterElements.forEach((element) => {
+          const htmlElement = element as HTMLElement;
+
+          // Limpiar el contenido inicial para evitar duplicación
+          if (!element.classList.contains("typed")) {
+            element.textContent = "";
+          }
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
                 if (
-                  (window as any).AnimationUtils &&
-                  typeof (window as any).AnimationUtils.typeWriter ===
-                    "function"
+                  entry.isIntersecting &&
+                  !element.classList.contains("typed")
                 ) {
-                  setTimeout(
-                    () => {
+                  element.classList.add("typed");
+
+                  // Delay inicial para la primera carga
+                  const delay =
+                    parseInt(htmlElement.dataset.delay || "0") || 500;
+
+                  setTimeout(() => {
+                    if (
+                      (window as any).AnimationUtils &&
+                      typeof (window as any).AnimationUtils.typeWriter ===
+                        "function"
+                    ) {
                       (window as any).AnimationUtils.typeWriter(element);
-                    },
-                    parseInt(htmlElement.dataset.delay || "0") || 0
-                  );
-                } else {
-                  // Fallback simple si AnimationUtils no está disponible
-                  const text =
-                    htmlElement.dataset.text || element.textContent || "";
-                  const speed =
-                    parseInt(htmlElement.dataset.speed || "80") || 80;
-
-                  element.textContent = "";
-                  let i = 0;
-                  const timer = setInterval(() => {
-                    if (i < text.length) {
-                      element.textContent += text.charAt(i);
-                      i++;
                     } else {
-                      clearInterval(timer);
-                    }
-                  }, speed);
-                }
-                observer.unobserve(element);
-              }
-            });
-          },
-          { threshold: 0.5 }
-        );
+                      // Fallback simple
+                      const text = htmlElement.dataset.text || "";
+                      const speed =
+                        parseInt(htmlElement.dataset.speed || "80") || 80;
 
-        observer.observe(element);
-      });
+                      let i = 0;
+                      const timer = setInterval(() => {
+                        if (i < text.length) {
+                          element.textContent += text.charAt(i);
+                          i++;
+                        } else {
+                          clearInterval(timer);
+                        }
+                      }, speed);
+                    }
+                  }, delay);
+
+                  observer.unobserve(element);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          );
+
+          observer.observe(element);
+        });
+      };
+
+      // Inicializar typewriter después de que todo esté cargado
+      setTimeout(initTypewriter, 100);
     });
   </script>
 
@@ -541,14 +579,9 @@ import rightArrow from "../assets/icons/right.svg";
 
     /* Responsive text sizing */
     @media (max-width: 640px) {
-      .hero-swiper h1 {
-        font-size: 48px !important;
-        line-height: 100% !important;
-      }
-
       .hero-swiper p {
         font-size: 18px !important;
-        margin-bottom: 2rem;
+        margin-bottom: 16px;
       }
 
       .hero-swiper button {
@@ -571,12 +604,13 @@ import rightArrow from "../assets/icons/right.svg";
     }
 
     @media (max-width: 768px) {
-      .hero-swiper h1 {
-        font-size: 60px !important;
-      }
-
-      .hero-swiper p {
-        font-size: 20px !important;
+      .overlay-gradient {
+        background: radial-gradient(
+          1456.75% 100% at 50% 0%,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.0522401) 47.45%,
+          #ffffff 74.73%
+        ) !important;
       }
     }
 
