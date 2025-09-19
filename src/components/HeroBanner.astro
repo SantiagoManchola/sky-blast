@@ -57,10 +57,7 @@ import rightArrow from "../assets/icons/right.svg";
                 data-animation="fade-up"
                 data-delay="300"
               >
-                WE ACHIEVE <br /><span
-                  class="text-orange typewriter-effect"
-                  data-text="THE IMPOSSIBLE"
-                  data-speed="80"></span>
+                WE ACHIEVE <br /><span class="text-orange">THE IMPOSSIBLE</span>
               </h1>
               <p
                 class="md:mb-8 text-normal text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
@@ -139,10 +136,9 @@ import rightArrow from "../assets/icons/right.svg";
                 data-animation="slide-rotate"
                 data-delay="300"
               >
-                TAKING CLEANING <br /><span
-                  class="text-orange typewriter-effect"
-                  data-text="TO THE NEXT LEVEL"
-                  data-speed="90"></span>
+                TAKING CLEANING <br /><span class="text-orange highlight-text"
+                  >TO THE NEXT LEVEL</span
+                >
               </h1>
               <p
                 class="md:mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
@@ -222,9 +218,7 @@ import rightArrow from "../assets/icons/right.svg";
                 data-delay="300"
               >
                 A Spotless Building,<br /><span
-                  class="text-orange typewriter-effect"
-                  data-text="Hassle-Free"
-                  data-speed="90">Hassle-Free</span
+                  class="text-orange highlight-text">Hassle-Free</span
                 >
               </h1>
               <p
@@ -322,50 +316,6 @@ import rightArrow from "../assets/icons/right.svg";
         // Speed of transition más lento y suave
         speed: 1200, // Más lento para suavidad
 
-        // Callbacks simplificados sin reactivar animaciones complejas
-        on: {
-          slideChange: function (swiper) {
-            // Solo reiniciar typewriter effects en el slide activo
-            const activeSlide = swiper.slides[swiper.activeIndex];
-            if (activeSlide) {
-              const typewriterElements =
-                activeSlide.querySelectorAll(".typewriter-effect");
-              typewriterElements.forEach((element: any) => {
-                if (!element.classList.contains("typed")) {
-                  element.classList.add("typed");
-                  const htmlElement = element as HTMLElement;
-
-                  setTimeout(() => {
-                    if (
-                      (window as any).AnimationUtils &&
-                      typeof (window as any).AnimationUtils.typeWriter ===
-                        "function"
-                    ) {
-                      (window as any).AnimationUtils.typeWriter(element);
-                    } else {
-                      // Fallback typewriter
-                      const text = htmlElement.dataset.text || "";
-                      const speed =
-                        parseInt(htmlElement.dataset.speed || "80") || 80;
-
-                      element.textContent = "";
-                      let i = 0;
-                      const timer = setInterval(() => {
-                        if (i < text.length) {
-                          element.textContent += text.charAt(i);
-                          i++;
-                        } else {
-                          clearInterval(timer);
-                        }
-                      }, speed);
-                    }
-                  }, 800); // Delay para que se vea la transición primero
-                }
-              });
-            }
-          },
-        },
-
         // Responsive breakpoints
         breakpoints: {
           // Mobile
@@ -409,69 +359,16 @@ import rightArrow from "../assets/icons/right.svg";
         }
       });
 
-      // Configurar efectos de typewriter - mejorado para evitar duplicaciones
-      const initTypewriter = () => {
-        const typewriterElements =
-          document.querySelectorAll(".typewriter-effect");
-        typewriterElements.forEach((element) => {
-          const htmlElement = element as HTMLElement;
-
-          // Limpiar el contenido inicial para evitar duplicación
-          if (!element.classList.contains("typed")) {
-            element.textContent = "";
+      // Activar highlight del primer slide
+      setTimeout(() => {
+        const firstSlide = document.querySelector(".swiper-slide");
+        if (firstSlide) {
+          const firstHighlight = firstSlide.querySelector(".highlight-text");
+          if (firstHighlight) {
+            firstHighlight.classList.add("animate-highlight");
           }
-
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (
-                  entry.isIntersecting &&
-                  !element.classList.contains("typed")
-                ) {
-                  element.classList.add("typed");
-
-                  // Delay inicial para la primera carga
-                  const delay =
-                    parseInt(htmlElement.dataset.delay || "0") || 500;
-
-                  setTimeout(() => {
-                    if (
-                      (window as any).AnimationUtils &&
-                      typeof (window as any).AnimationUtils.typeWriter ===
-                        "function"
-                    ) {
-                      (window as any).AnimationUtils.typeWriter(element);
-                    } else {
-                      // Fallback simple
-                      const text = htmlElement.dataset.text || "";
-                      const speed =
-                        parseInt(htmlElement.dataset.speed || "80") || 80;
-
-                      let i = 0;
-                      const timer = setInterval(() => {
-                        if (i < text.length) {
-                          element.textContent += text.charAt(i);
-                          i++;
-                        } else {
-                          clearInterval(timer);
-                        }
-                      }, speed);
-                    }
-                  }, delay);
-
-                  observer.unobserve(element);
-                }
-              });
-            },
-            { threshold: 0.3 }
-          );
-
-          observer.observe(element);
-        });
-      };
-
-      // Inicializar typewriter después de que todo esté cargado
-      setTimeout(initTypewriter, 100);
+        }
+      }, 1000);
     });
   </script>
 
@@ -527,23 +424,6 @@ import rightArrow from "../assets/icons/right.svg";
       top: 60%;
       right: 15%;
       animation-delay: 3s;
-    }
-
-    /* Mejorar el efecto typewriter */
-    .typewriter-effect {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid #f07845;
-      animation: blink-caret 1s step-end infinite;
-    }
-
-    .typewriter-effect.typing {
-      border-right: 3px solid #f07845;
-    }
-
-    .typewriter-effect.completed {
-      border-right: none;
     }
 
     /* Animaciones mejoradas para elementos */
@@ -608,7 +488,7 @@ import rightArrow from "../assets/icons/right.svg";
         background: radial-gradient(
           1456.75% 100% at 50% 0%,
           rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.0522401) 47.45%,
+          rgba(255, 255, 255, 0.0522401) 20%,
           #ffffff 74.73%
         ) !important;
       }
