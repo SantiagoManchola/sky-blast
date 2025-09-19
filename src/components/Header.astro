@@ -53,14 +53,16 @@ import skyBlastLogo from "../assets/sky-blast.png";
           type="button"
           class="mobile-menu-button p-2 rounded-md hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label="Toggle menu"
+          onclick="return false;"
         >
           <svg
-            class="w-6 h-6"
+            class="w-6 h-6 pointer-events-none"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
             <path
+              class="pointer-events-none"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
@@ -72,7 +74,7 @@ import skyBlastLogo from "../assets/sky-blast.png";
 
     <!-- Mobile Navigation -->
     <div
-      class="mobile-menu fixed top-16 lg:top-20 left-0 right-0 bg-white shadow-lg transform translate-y-0 opacity-0 transition-all duration-300 ease-in-out lg:hidden z-40 hidden"
+      class="mobile-menu sticky top-0 left-0 right-0 bg-white shadow-lg transform translate-y-0 opacity-0 transition-all duration-300 ease-in-out lg:hidden z-40 hidden"
     >
       <div class="px-4 py-6 space-y-4" style="background-color: #FDFDFF;">
         <a
@@ -95,7 +97,7 @@ import skyBlastLogo from "../assets/sky-blast.png";
         </a>
         <a
           href="#contact"
-          class="block mx-4 mt-6 text-center px-4 py-3 rounded-3xl transition-all duration-200 hover:bg-opacity-90 bg-uranian-blue font-body font-bold text-base leading-none"
+          class="block mx-4 mt-6 text-center px-4 py-3 rounded-3xl transition-all duration-200 hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none"
         >
           Contact Us
         </a>
@@ -112,8 +114,13 @@ import skyBlastLogo from "../assets/sky-blast.png";
     let isMenuOpen = false;
 
     if (mobileMenuButton && mobileMenu) {
+      // Ensure no default behavior
       mobileMenuButton.addEventListener("click", (e) => {
+        e.preventDefault();
         e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        // Toggle menu state
         isMenuOpen = !isMenuOpen;
 
         if (isMenuOpen) {
@@ -131,6 +138,18 @@ import skyBlastLogo from "../assets/sky-blast.png";
             mobileMenu.classList.add("hidden");
           }, 300);
         }
+
+        // Explicitly return false to prevent any default action
+        return false;
+      });
+
+      // Additional safety: prevent any form of navigation
+      mobileMenuButton.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+      });
+
+      mobileMenuButton.addEventListener("touchstart", (e) => {
+        e.preventDefault();
       });
     }
 

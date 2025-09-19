@@ -41,23 +41,22 @@ const imageUrls = {
           >
             Properties we proudly serve:
           </h2>
-
           <!-- Tab Navigation -->
           <div class="flex flex-wrap gap-3 mb-8">
             <button
-              class="property-tab active bg-blue text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/90"
+              class="cursor-pointer property-tab text-xs active bg-blue text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/90"
               data-tab="commercial"
             >
               Commercial and Residential
             </button>
             <button
-              class="property-tab bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
+              class="cursor-pointer property-tab text-xs bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
               data-tab="industrial"
             >
               Industrial and Infrastructure
             </button>
             <button
-              class="property-tab bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
+              class="cursor-pointer property-tab text-xs bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
               data-tab="public"
             >
               Public and Large Spaces
@@ -69,7 +68,7 @@ const imageUrls = {
         <div class="property-content">
           <!-- Commercial Content -->
           <div id="commercial-content" class="tab-content active">
-            <p class="font-body text-black leading-relaxed mb-6">
+            <p class="font-body text-black font-light leading-relaxed mb-6">
               We offer facade and window cleaning solutions for buildings up to
               15 floors, owned communities, and leased communities.
             </p>
@@ -78,53 +77,67 @@ const imageUrls = {
               <h4 class="font-heading text-lg font-semibold text-black">
                 Includes:
               </h4>
-              <ul class="space-y-3 font-body text-black">
+              <ul
+                class="font-body text-black list-disc list-inside ml-4 font-light"
+              >
                 <li>Commercial and residential buildings (up to 15 floors)</li>
                 <li>Property owned communities</li>
                 <li>Hotels and resorts</li>
                 <li>Malls and plazas</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Industrial Content -->
-          <div id="industrial-content" class="tab-content hidden">
-            <p class="font-body text-black leading-relaxed mb-6">
-              Specialized cleaning services for industrial facilities and
-              critical infrastructure requiring precision and safety protocols.
-            </p>
-
-            <div class="space-y-4">
-              <h4 class="font-heading text-lg font-semibold text-black">
-                Includes:
-              </h4>
-              <ul class="space-y-3 font-body text-black">
-                <li>Manufacturing facilities</li>
-                <li>Warehouses and distribution centers</li>
-                <li>Power plants and utilities</li>
                 <li>Automotive dealerships</li>
                 <li>Gas stations</li>
               </ul>
             </div>
           </div>
 
-          <!-- Public Content -->
-          <div id="public-content" class="tab-content hidden">
-            <p class="font-body text-black leading-relaxed mb-6">
-              Comprehensive cleaning solutions for public buildings and
-              large-scale facilities serving communities across Florida.
+          <!-- Industrial Content -->
+          <div id="industrial-content" class="tab-content hidden">
+            <p class="font-body text-black font-light leading-relaxed mb-6">
+              We provide specialized services for large industrial areas, energy
+              facilities, and infrastructure that require safe and efficient
+              cleaning methods.
             </p>
 
             <div class="space-y-4">
               <h4 class="font-heading text-lg font-semibold text-black">
                 Includes:
               </h4>
-              <ul class="space-y-3 font-body text-black">
-                <li>Government buildings</li>
-                <li>Schools and universities</li>
-                <li>Hospitals and healthcare facilities</li>
-                <li>Sports complexes and stadiums</li>
-                <li>Convention centers</li>
+              <ul
+                class="font-body text-black list-disc list-inside ml-4 font-light"
+              >
+                <li>Warehouses and extensive industrial facilities</li>
+                <li>Greenhouses</li>
+                <li>Factories</li>
+                <li>
+                  Government buildings and infrastructure (Municipal, State, and
+                  Federal)
+                </li>
+                <li>Energy utility providers</li>
+                <li>Exterior post-construction cleaning</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Public Content -->
+          <div id="public-content" class="tab-content hidden">
+            <p class="font-body text-black font-light leading-relaxed mb-6">
+              Our drone technology is ideal for the maintenance of large-scale
+              spaces, ensuring a fast and less intrusive cleaning process.
+            </p>
+
+            <div class="space-y-4">
+              <h4 class="font-heading text-lg font-semibold text-black">
+                Includes:
+              </h4>
+              <ul
+                class="font-body text-black list-disc list-inside ml-4 font-light"
+              >
+                <li>University and college campuses</li>
+                <li>Hospitals and clinics</li>
+                <li>Stadiums and arenas</li>
+                <li>Museums and amphitheaters</li>
+                <li>Amusement and theme parks</li>
+                <li>Cruises (for exterior cleaning)</li>
               </ul>
             </div>
           </div>
