@@ -12,6 +12,7 @@ interface ContactFormData {
   name: string;
   email: string;
   location: string;
+  customLocation?: string;
   service: string;
   message?: string;
 }
@@ -39,6 +40,14 @@ const validateFormData = (
     errors.push("Please select a location");
   }
 
+  // Validate customLocation when "Other" is selected
+  if (
+    data.location === "Other" &&
+    (!data.customLocation || data.customLocation.trim().length === 0)
+  ) {
+    errors.push("Please specify your location");
+  }
+
   if (!data.service || data.service.trim().length === 0) {
     errors.push("Please select a service");
   }
@@ -63,14 +72,21 @@ const createEmailTemplate = (data: ContactFormData): string => {
   };
 
   const locationNames: Record<string, string> = {
-    miami: "Miami",
-    orlando: "Orlando",
-    tampa: "Tampa",
-    jacksonville: "Jacksonville",
-    "fort-myers": "Fort Myers",
-    "west-palm-beach": "West Palm Beach",
-    sarasota: "Sarasota",
-    tallahassee: "Tallahassee",
+    brevard: "Brevard",
+    citrus: "Citrus",
+    hernando: "Hernando",
+    hillsborough: "Hillsborough",
+    "indian-river": "Indian River",
+    lake: "Lake",
+    marion: "Marion",
+    orange: "Orange",
+    osceola: "Osceola",
+    pasco: "Pasco",
+    pinellas: "Pinellas",
+    polk: "Polk",
+    seminole: "Seminole",
+    sumter: "Sumter",
+    volusia: "Volusia",
     other: "Other",
   };
 
@@ -192,9 +208,11 @@ const createEmailTemplate = (data: ContactFormData): string => {
           </div>
           
           <div class="field">
-            <div class="label">Location</div>
+            <div class="label">County</div>
             <div class="value">${
-              locationNames[data.location] || data.location
+              data.location === "Other" && data.customLocation
+                ? data.customLocation
+                : locationNames[data.location] || data.location
             }</div>
           </div>
           
@@ -249,6 +267,25 @@ const createAutoReplyTemplate = (data: ContactFormData): string => {
     "pressure-washing": "Pressure Washing",
     "multiple-services": "Multiple Services",
     consultation: "Free Consultation",
+  };
+
+  const locationNames: Record<string, string> = {
+    brevard: "Brevard",
+    citrus: "Citrus",
+    hernando: "Hernando",
+    hillsborough: "Hillsborough",
+    "indian-river": "Indian River",
+    lake: "Lake",
+    marion: "Marion",
+    orange: "Orange",
+    osceola: "Osceola",
+    pasco: "Pasco",
+    pinellas: "Pinellas",
+    polk: "Polk",
+    seminole: "Seminole",
+    sumter: "Sumter",
+    volusia: "Volusia",
+    other: "Other",
   };
 
   return `
@@ -402,8 +439,12 @@ const createAutoReplyTemplate = (data: ContactFormData): string => {
               }</span>
             </div>
             <div class="summary-item">
-              <span class="summary-label">Location:</span>
-              <span class="summary-value">${data.location}</span>
+              <span class="summary-label">County:</span>
+              <span class="summary-value">${
+                data.location === "Other" && data.customLocation
+                  ? data.customLocation
+                  : locationNames[data.location] || data.location
+              }</span>
             </div>
             <div class="summary-item">
               <span class="summary-label">Submitted:</span>

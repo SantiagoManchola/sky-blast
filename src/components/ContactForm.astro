@@ -74,7 +74,7 @@ import contactImage from "../assets/contact.jpg";
                 for="location"
                 class="block font-body text-sm font-medium text-gray-700 mb-2"
               >
-                Location*
+                County*
               </label>
               <select
                 id="location"
@@ -82,17 +82,43 @@ import contactImage from "../assets/contact.jpg";
                 class="w-full px-4 py-2 border border-blue focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body bg-white"
                 style="border-radius: 24px;"
               >
-                <option value="">Select your city</option>
-                <option value="miami">Miami</option>
-                <option value="orlando">Orlando</option>
-                <option value="tampa">Tampa</option>
-                <option value="jacksonville">Jacksonville</option>
-                <option value="fort-myers">Fort Myers</option>
-                <option value="west-palm-beach">West Palm Beach</option>
-                <option value="sarasota">Sarasota</option>
-                <option value="tallahassee">Tallahassee</option>
-                <option value="other">Other (Please specify in message)</option>
+                <option value="">Select your county</option>
+                <option value="brevard">Brevard</option>
+                <option value="citrus">Citrus</option>
+                <option value="hernando">Hernando</option>
+                <option value="hillsborough">Hillsborough</option>
+                <option value="indian-river">Indian River</option>
+                <option value="lake">Lake</option>
+                <option value="marion">Marion</option>
+                <option value="orange">Orange</option>
+                <option value="osceola">Osceola</option>
+                <option value="pasco">Pasco</option>
+                <option value="pinellas">Pinellas</option>
+                <option value="polk">Polk</option>
+                <option value="seminole">Seminole</option>
+                <option value="sumter">Sumter</option>
+                <option value="volusia">Volusia</option>
+                <option value="Other">Other (Please specify below)</option>
               </select>
+              <span class="error-message text-red-500 text-sm block h-5"></span>
+            </div>
+
+            <!-- Custom Location Field (Hidden by default) -->
+            <div id="custom-location-field" style="display: none;">
+              <label
+                for="custom-location"
+                class="block font-body text-sm font-medium text-gray-700 mb-2"
+              >
+                Please specify your county*
+              </label>
+              <input
+                type="text"
+                id="custom-location"
+                name="customLocation"
+                class="w-full px-4 py-2 border border-blue focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body"
+                style="border-radius: 24px;"
+                placeholder="Enter your county/location"
+              />
               <span class="error-message text-red-500 text-sm block h-5"></span>
             </div>
 
@@ -121,6 +147,15 @@ import contactImage from "../assets/contact.jpg";
                 >
                 <option value="gutter-cleaning">Gutter Cleaning</option>
                 <option value="pressure-washing">Pressure Washing</option>
+                <option value="exterior-surface-cleaning"
+                  >Exterior Surface Cleaning</option
+                >
+                <option value="commercial-building-maintenance"
+                  >Commercial Building Maintenance</option
+                >
+                <option value="industrial-equipment-cleaning"
+                  >Industrial Equipment Cleaning</option
+                >
                 <option value="multiple-services">Multiple Services</option>
                 <option value="consultation">Free Consultation</option>
               </select>
@@ -130,8 +165,8 @@ import contactImage from "../assets/contact.jpg";
             <!-- Submit Button -->
             <button
               type="submit"
-              class="text-white font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg font-body"
-              style="width: fit-content; height: 40px; padding: 8px 16px; gap: 10px; border-radius: 24px; opacity: 1; background-color: #000517;"
+              class="mt-4 text-white font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg font-body"
+              style="width: fit-content; height: 40px; padding: 8px 16px; gap: 10px; border-radius: 24px; opacity: 1; background-color: #000517; "
               onmouseover="this.style.backgroundColor='#000517dd'"
               onmouseout="this.style.backgroundColor='#000517'"
             >
@@ -148,7 +183,7 @@ import contactImage from "../assets/contact.jpg";
   </div>
 
   <!-- Professional Notification Container -->
-  <div id="notification-container" class="fixed top-4 right-4 z-50 space-y-4">
+  <div id="notification-container" class="fixed top-4 right-4 z-1000 space-y-4">
     <!-- Notifications will be dynamically inserted here -->
   </div>
 </section>
@@ -289,7 +324,12 @@ import contactImage from "../assets/contact.jpg";
       },
       location: {
         required: true,
-        message: "Please select your location",
+        message: "Please select your county",
+      },
+      customLocation: {
+        required: false, // Will be set to true dynamically when "other" is selected
+        minLength: 2,
+        message: "Please specify your county (at least 2 characters)",
       },
       service: {
         required: true,
@@ -303,24 +343,50 @@ import contactImage from "../assets/contact.jpg";
       if (!rule) return true;
 
       const errorElement = field.parentElement?.querySelector(
-        ".error-message"
+        "span.error-message"
       ) as HTMLElement;
+      if (!errorElement) {
+        console.warn(`Error element not found for field: ${field.name}`);
+        return true;
+      }
+
       let isValid = true;
       let message = "";
 
-      if (rule.required && !field.value.trim()) {
-        isValid = false;
-        message = rule.message;
-      } else if (
-        rule.pattern &&
-        field.value &&
-        !rule.pattern.test(field.value)
-      ) {
-        isValid = false;
-        message = rule.message;
-      } else if (rule.minLength && field.value.length < rule.minLength) {
-        isValid = false;
-        message = rule.message;
+      // Special handling for customLocation field
+      if (field.name === "customLocation") {
+        const locationSelect = form.querySelector(
+          'select[name="location"]'
+        ) as HTMLSelectElement;
+        const isOtherSelected =
+          locationSelect && locationSelect.value === "Other";
+
+        if (!isOtherSelected) {
+          // If "Other" is not selected, always consider this field valid
+          isValid = true;
+        } else if (!field.value.trim()) {
+          isValid = false;
+          message = rule.message;
+        } else if (rule.minLength && field.value.length < rule.minLength) {
+          isValid = false;
+          message = rule.message;
+        }
+      } else {
+        // Regular validation for other fields
+        if (rule.required && !field.value.trim()) {
+          isValid = false;
+          message = rule.message;
+        } else if (
+          rule.pattern &&
+          field.value &&
+          !rule.pattern.test(field.value)
+        ) {
+          isValid = false;
+          message = rule.message;
+        } else if (rule.minLength && field.value.length < rule.minLength) {
+          isValid = false;
+          message = rule.message;
+        }
       }
 
       if (isValid) {
@@ -342,12 +408,66 @@ import contactImage from "../assets/contact.jpg";
       field.addEventListener("blur", () =>
         validateField(field as HTMLInputElement | HTMLSelectElement)
       );
-      field.addEventListener("input", () => {
-        if (field.classList.contains("border-red-500")) {
-          validateField(field as HTMLInputElement | HTMLSelectElement);
-        }
-      });
+
+      // Add different event listeners for different field types
+      if (field.tagName === "SELECT") {
+        field.addEventListener("change", () =>
+          validateField(field as HTMLInputElement | HTMLSelectElement)
+        );
+      } else {
+        field.addEventListener("input", () => {
+          if (field.classList.contains("border-red-500")) {
+            validateField(field as HTMLInputElement | HTMLSelectElement);
+          }
+        });
+      }
     });
+
+    // Handle location dropdown change
+    const locationSelect = form.querySelector(
+      'select[name="location"]'
+    ) as HTMLSelectElement;
+    const customLocationField = form.querySelector(
+      "#custom-location-field"
+    ) as HTMLDivElement;
+    const customLocationInput = form.querySelector(
+      'input[name="customLocation"]'
+    ) as HTMLInputElement;
+
+    if (locationSelect && customLocationField && customLocationInput) {
+      function toggleCustomLocation() {
+        const isOtherSelected = locationSelect.value === "Other";
+        customLocationField.style.display = isOtherSelected ? "block" : "none";
+
+        if (!isOtherSelected) {
+          customLocationInput.value = "";
+          // Remove any validation styles when hiding
+          customLocationInput.classList.remove(
+            "border-red-500",
+            "border-green-500"
+          );
+          const errorMsg =
+            customLocationInput.parentElement?.querySelector(".error-message");
+          if (errorMsg) errorMsg.textContent = "";
+        } else {
+          // Add event listeners when field becomes visible
+          customLocationInput.addEventListener("blur", () =>
+            validateField(customLocationInput)
+          );
+          customLocationInput.addEventListener("input", () => {
+            if (customLocationInput.classList.contains("border-red-500")) {
+              validateField(customLocationInput);
+            }
+          });
+        }
+      }
+
+      // Initial setup
+      toggleCustomLocation();
+
+      // Listen for changes
+      locationSelect.addEventListener("change", toggleCustomLocation);
+    }
 
     // Form submission
     form.addEventListener("submit", async (e) => {
@@ -360,6 +480,17 @@ import contactImage from "../assets/contact.jpg";
           isFormValid = false;
         }
       });
+
+      // Special validation for customLocation when "Other" is selected
+      if (
+        locationSelect &&
+        locationSelect.value === "Other" &&
+        customLocationInput
+      ) {
+        if (!validateField(customLocationInput)) {
+          isFormValid = false;
+        }
+      }
 
       if (!isFormValid) {
         createNotification("Please fix the errors above.", "error");
@@ -404,10 +535,15 @@ import contactImage from "../assets/contact.jpg";
           );
           form.reset();
 
-          // Reset field styles
+          // Reset field styles and hide custom location field
           formFields.forEach((field) => {
             field.classList.remove("border-green-500", "border-red-500");
           });
+
+          // Hide custom location field after reset
+          if (customLocationField) {
+            customLocationField.style.display = "none";
+          }
         } else {
           // Handle validation errors from server
           if (result.errors && Array.isArray(result.errors)) {
