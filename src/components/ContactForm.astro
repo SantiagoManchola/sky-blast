@@ -7,34 +7,57 @@ import contactImage from "../assets/contact.jpg";
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- Image -->
       <div
-        class="relative order-2 lg:order-1 h-full flex justify-center lg:justify-start"
+        class="relative order-2 lg:order-1 h-full flex justify-center lg:justify-start animate-on-scroll"
+        data-animation="fade-right"
+        data-delay="200"
       >
         <div
-          class="overflow-hidden h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] w-full max-w-[496px] rounded-lg"
+          class="overflow-hidden h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] w-full max-w-[496px] rounded-lg hover-glow contact-image-container"
         >
           <img
             src={contactImage.src}
             alt="Professional drone cleaning services"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
           />
+          <!-- Overlay decorativo -->
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-blue/10 via-transparent to-orange/10 opacity-0 hover:opacity-100 transition-opacity duration-500"
+          >
+          </div>
         </div>
       </div>
 
       <!-- Contact Form -->
-      <div class="order-1 lg:order-2 lg:py-16">
+      <div
+        class="order-1 lg:order-2 lg:py-16 animate-on-scroll"
+        data-animation="fade-left"
+        data-delay="300"
+      >
         <div class="max-w-lg">
           <h2
-            class="font-heading text-3xl lg:text-5xl font-bold text-secondary mb-6"
+            class="font-heading text-3xl lg:text-5xl font-bold text-secondary mb-6 animate-on-scroll text-reveal"
+            data-animation="fade-up"
+            data-delay="400"
+            data-word-reveal="true"
           >
             Contact Us
           </h2>
 
-          <form id="contact-form" novalidate>
+          <form
+            id="contact-form"
+            novalidate
+            class="contact-form"
+            data-stagger="150"
+          >
             <!-- Name Field -->
-            <div>
+            <div
+              class="form-group animate-on-scroll"
+              data-animation="fade-up"
+              data-delay="600"
+            >
               <label
                 for="name"
-                class="block font-body text-sm font-medium text-gray-700 mb-2"
+                class="block font-body text-sm font-medium text-gray-700 mb-2 form-label"
               >
                 Complete Name*
               </label>
@@ -42,7 +65,7 @@ import contactImage from "../assets/contact.jpg";
                 type="text"
                 id="name"
                 name="name"
-                class="w-full px-4 py-2 border border-blue focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body"
+                class="w-full px-4 py-2 border border-blue focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body form-input"
                 style="border-radius: 24px;"
                 placeholder="Complete name"
               />
@@ -50,10 +73,14 @@ import contactImage from "../assets/contact.jpg";
             </div>
 
             <!-- Email Field -->
-            <div>
+            <div
+              class="form-group animate-on-scroll"
+              data-animation="fade-up"
+              data-delay="750"
+            >
               <label
                 for="email"
-                class="block font-body text-sm font-medium text-gray-700 mb-2"
+                class="block font-body text-sm font-medium text-gray-700 mb-2 form-label"
               >
                 Email*
               </label>
@@ -61,7 +88,7 @@ import contactImage from "../assets/contact.jpg";
                 type="email"
                 id="email"
                 name="email"
-                class="w-full px-4 py-2 border border-blue focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body"
+                class="w-full px-4 py-2 border border-blue focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-body form-input"
                 style="border-radius: 24px;"
                 placeholder="example@gmail.com"
               />
@@ -69,10 +96,14 @@ import contactImage from "../assets/contact.jpg";
             </div>
 
             <!-- Location Dropdown -->
-            <div>
+            <div
+              class="form-group animate-on-scroll"
+              data-animation="fade-up"
+              data-delay="900"
+            >
               <label
                 for="location"
-                class="block font-body text-sm font-medium text-gray-700 mb-2"
+                class="block font-body text-sm font-medium text-gray-700 mb-2 form-label"
               >
                 County*
               </label>

@@ -43,7 +43,7 @@ const coreValues = [
 <section class="pb-16 lg:pb-24">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Title -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-16 animate-on-scroll" data-animation="fade-up" data-delay="200">
       <h2
         class="text-black mb-4 font-normal text-[24px] leading-[1] text-center font-poppins"
       >
@@ -52,37 +52,49 @@ const coreValues = [
     </div>
 
     <!-- Values Swiper -->
-    <div class="relative">
+    <div class="relative animate-on-scroll" data-animation="fade-up" data-delay="400">
       <!-- Swiper -->
       <div class="swiper values-swiper">
         <div class="swiper-wrapper">
           {
             coreValues.map((value, index) => (
               <div class="swiper-slide h-auto">
-                <div class="bg-white border border-blue rounded p-6 h-full flex flex-col min-h-[200px]">
+                <div class="bg-white border border-blue rounded p-6 h-full flex flex-col min-h-[200px] value-card hover-lift transition-all duration-500 group hover:border-orange hover:shadow-lg">
                   <div class="flex justify-start mb-4">
-                    <img
-                      src={value.icon.src}
-                      alt={value.title}
-                      class="w-6 h-6 text-primary"
-                    />
+                    <div class="icon-wrapper relative">
+                      <img
+                        src={value.icon.src}
+                        alt={value.title}
+                        class="w-6 h-6 text-primary transition-all duration-300 group-hover:scale-125 group-hover:rotate-12"
+                      />
+                      <!-- Círculo de fondo animado -->
+                      <div class="absolute inset-0 -m-2 bg-gradient-to-br from-orange/10 to-blue/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 -z-10"></div>
+                    </div>
                   </div>
 
-                  <h3 class="font-poppins font-bold text-[16px] leading-[1] align-middle mb-3 text-orange">
+                  <h3 class="font-poppins font-bold text-[16px] leading-[1] align-middle mb-3 text-orange group-hover:text-black transition-colors duration-300">
                     {value.title}
                   </h3>
 
-                  <p class="font-light text-[16px] align-middle tracking-normal">
+                  <p class="font-light text-[16px] align-middle tracking-normal text-black/80 group-hover:text-black transition-colors duration-300">
                     {value.description}
                   </p>
+
+                  <!-- Línea decorativa animada -->
+                  <div class="mt-auto pt-4">
+                    <div class="h-0.5 bg-gradient-to-r from-orange to-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                  </div>
+
+                  <!-- Efecto de brillo en hover -->
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out rounded pointer-events-none"></div>
                 </div>
               </div>
             ))
           }
         </div>
 
-        <!-- Pagination -->
-        <div class="swiper-pagination !relative !mt-12"></div>
+        <!-- Pagination animada -->
+        <div class="swiper-pagination !relative !mt-12 animate-on-scroll" data-animation="fade-up" data-delay="600"></div>
       </div>
     </div>
   </div>
@@ -96,11 +108,147 @@ const coreValues = [
     height: 12px;
     margin: 0 6px;
     transition: all 0.3s ease;
+    position: relative;
   }
 
   .values-swiper .swiper-pagination-bullet-active {
     background: #b3defb;
     transform: scale(1.3);
+  }
+
+  .values-swiper .swiper-pagination-bullet:hover {
+    background: #f07845;
+    transform: scale(1.2);
+  }
+
+  /* Animaciones específicas para CoreValues */
+  .value-card {
+    position: relative;
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  .value-card:nth-child(1) { animation-delay: 0.1s; }
+  .value-card:nth-child(2) { animation-delay: 0.2s; }
+  .value-card:nth-child(3) { animation-delay: 0.3s; }
+  .value-card:nth-child(4) { animation-delay: 0.4s; }
+  .value-card:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes slideInUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Efecto de pulso en iconos */
+  .icon-wrapper {
+    display: inline-block;
+  }
+
+  .icon-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(240, 120, 69, 0.2), transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+
+  .value-card:hover .icon-wrapper::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Animación de aparición para las bullets del pagination */
+  .values-swiper .swiper-pagination-bullet {
+    animation: fadeInScale 0.5s ease-out forwards;
+    animation-delay: calc(var(--bullet-index, 0) * 0.1s);
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Efecto de onda en el hover de las tarjetas */
+  .value-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(240, 120, 69, 0.1), transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    z-index: 0;
+  }
+
+  .value-card:hover::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Asegurar que el contenido esté por encima del efecto */
+  .value-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Animación flotante sutil para los iconos */
+  .icon-wrapper img {
+    animation: gentleFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  /* Mejoras responsive */
+  @media (max-width: 768px) {
+    .value-card {
+      animation-delay: 0s !important;
+    }
+    
+    .icon-wrapper img {
+      animation-duration: 4s; /* Más lento en móvil */
+    }
+  }
+
+  /* Optimización para dispositivos con movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .value-card {
+      animation: none;
+      transform: none;
+      opacity: 1;
+    }
+    
+    .icon-wrapper img {
+      animation: none;
+    }
+    
+    .values-swiper .swiper-pagination-bullet {
+      animation: none;
+    }
   }
 </style>
 
@@ -109,27 +257,102 @@ const coreValues = [
   import { Pagination } from "swiper/modules";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const swiper = new Swiper(".values-swiper", {
-      modules: [Pagination],
-      slidesPerView: 1,
-      spaceBetween: 24,
-      autoHeight: false,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 24,
+    // Observar cuando la sección entre en vista para inicializar animaciones
+    const coreValuesSection = document.querySelector('.values-swiper').closest('section');
+    
+    const initCoreValuesAnimations = () => {
+      const swiper = new Swiper(".values-swiper", {
+        modules: [Pagination],
+        slidesPerView: 1,
+        spaceBetween: 24,
+        autoHeight: false,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
         },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 32,
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 24,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 32,
+          },
         },
-      },
-      loop: false,
-      autoplay: false,
-    });
+        loop: false,
+        autoplay: false,
+        on: {
+          init: function() {
+            // Animar las tarjetas cuando el swiper esté listo
+            setTimeout(() => {
+              const valueCards = document.querySelectorAll('.value-card');
+              valueCards.forEach((card, index) => {
+                setTimeout(() => {
+                  (card as HTMLElement).style.animationPlayState = 'running';
+                }, index * 100);
+              });
+            }, 200);
+
+            // Animar los bullets del pagination
+            setTimeout(() => {
+              const bullets = document.querySelectorAll('.swiper-pagination-bullet');
+              bullets.forEach((bullet, index) => {
+                (bullet as HTMLElement).style.setProperty('--bullet-index', index.toString());
+              });
+            }, 500);
+          },
+          slideChange: function(swiper) {
+            // Animar las tarjetas visibles cuando cambie el slide
+            const visibleSlides = swiper.slides.slice(
+              swiper.activeIndex, 
+              swiper.activeIndex + (swiper.params.slidesPerView as number || 1)
+            );
+            
+            visibleSlides.forEach((slide, index) => {
+              const card = slide.querySelector('.value-card') as HTMLElement;
+              if (card) {
+                card.style.animation = 'none';
+                void card.offsetHeight; // Forzar reflow
+                card.style.animation = `slideInUp 0.6s ease-out forwards`;
+                card.style.animationDelay = `${index * 0.1}s`;
+              }
+            });
+          }
+        },
+      });
+
+      // Agregar efectos de hover mejorados a las bullets
+      const bullets = document.querySelectorAll('.swiper-pagination-bullet');
+      bullets.forEach(bullet => {
+        bullet.addEventListener('mouseenter', () => {
+          (bullet as HTMLElement).style.transform = 'scale(1.4)';
+          (bullet as HTMLElement).style.background = '#f07845';
+        });
+        
+        bullet.addEventListener('mouseleave', () => {
+          if (!bullet.classList.contains('swiper-pagination-bullet-active')) {
+            (bullet as HTMLElement).style.transform = 'scale(1)';
+            (bullet as HTMLElement).style.background = 'rgba(179, 222, 251, 0.4)';
+          }
+        });
+      });
+    };
+
+    if (coreValuesSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            initCoreValuesAnimations();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      observer.observe(coreValuesSection);
+    } else {
+      // Fallback si no hay intersection observer
+      initCoreValuesAnimations();
+    }
   });
 </script>

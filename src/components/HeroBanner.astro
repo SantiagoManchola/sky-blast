@@ -7,11 +7,17 @@ import rightArrow from "../assets/icons/right.svg";
 ---
 
 <section class="relative overflow-hidden hero-height">
+  <!-- Partículas flotantes decorativas -->
+  <div class="absolute inset-0 pointer-events-none z-0">
+    <div class="floating-particles" id="heroParticles"></div>
+  </div>
+
   <div class="hero-swiper relative z-10 h-full">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div
-          class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          class="absolute inset-0 bg-cover bg-center bg-no-repeat animate-on-scroll"
+          data-animation="scale-in"
           style={`background-image: url(${bgBanner1.src})`}
         >
           <div
@@ -26,34 +32,49 @@ import rightArrow from "../assets/icons/right.svg";
         >
           <div
             class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-20 justify-center"
+            data-stagger="200"
           >
-            <div class="z-30 flex items-center space-x-4 m-0 gap-4">
+            <div
+              class="z-30 flex items-center space-x-4 m-0 gap-4 animate-on-scroll"
+              data-animation="fade-left"
+              data-delay="100"
+            >
               <img
                 src={leftArrow.src}
                 alt="Previous"
-                class="relative swiper-button-prev w-8 h-8 lg:w-10 lg:h-10 group-hover:scale-110 transition-transform duration-300"
+                class="relative swiper-button-prev w-8 h-8 lg:w-10 lg:h-10 hover-lift transition-transform duration-300"
               />
               <img
                 src={rightArrow.src}
                 alt="Next"
-                class="relative swiper-button-next w-8 h-8 lg:w-10 lg:h-10 group-hover:scale-110 transition-transform duration-300"
+                class="relative swiper-button-next w-8 h-8 lg:w-10 lg:h-10 hover-lift transition-transform duration-300"
               />
             </div>
 
             <div class="max-w-2xl lg:max-w-3xl">
               <h1
-                class="font-bold text-[80px] uppercase align-middle text-black"
+                class="font-bold text-[80px] uppercase align-middle text-black animate-on-scroll"
+                data-animation="fade-up"
+                data-delay="300"
               >
-                WE ACHIEVE <br /><span class="text-orange">THE IMPOSSIBLE</span>
+                WE ACHIEVE <br /><span
+                  class="text-orange typewriter-effect"
+                  data-text="THE IMPOSSIBLE"
+                  data-speed="80">THE IMPOSSIBLE</span
+                >
               </h1>
               <p
-                class="mb-8 text-normal text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black"
+                class="mb-8 text-normal text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
+                data-animation="fade-up"
+                data-delay="500"
               >
                 Our drone technology reaches the highest <br /> and most difficult
                 places, ensuring <br /> thorough and safe cleaning.
               </p>
               <button
-                class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none"
+                class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none btn-animate hover-glow animate-on-scroll"
+                data-animation="fade-up"
+                data-delay="700"
               >
                 Get it
               </button>
@@ -66,7 +87,8 @@ import rightArrow from "../assets/icons/right.svg";
       <div class="swiper-slide">
         <!-- Background Image completo posicionado completamente a la derecha -->
         <div
-          class="absolute inset-0 bg-no-repeat"
+          class="absolute inset-0 bg-no-repeat animate-on-scroll"
+          data-animation="fade-right"
           style={`background-image: url(${bgBanner2.src}); 
                   background-size: auto 100%; 
                   background-position: 100% center;`}
@@ -87,36 +109,47 @@ import rightArrow from "../assets/icons/right.svg";
         >
           <div
             class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-20 justify-center"
+            data-stagger="200"
           >
-            <div class="z-30 flex items-center space-x-4 m-0 gap-4">
+            <div
+              class="z-30 flex items-center space-x-4 m-0 gap-4 animate-on-scroll"
+              data-animation="fade-left"
+              data-delay="100"
+            >
               <img
                 src={leftArrow.src}
                 alt="Previous"
-                class="swiper-button-prev w-8 h-8 lg:w-10 lg:h-10 group-hover:scale-110 transition-transform duration-300"
+                class="swiper-button-prev w-8 h-8 lg:w-10 lg:h-10 hover-lift transition-transform duration-300"
               />
               <img
                 src={rightArrow.src}
                 alt="Next"
-                class="swiper-button-next w-8 h-8 lg:w-10 lg:h-10 group-hover:scale-110 transition-transform duration-300"
+                class="swiper-button-next w-8 h-8 lg:w-10 lg:h-10 hover-lift transition-transform duration-300"
               />
             </div>
 
             <div class="max-w-2xl lg:max-w-4xl">
               <h1
-                class="font-bold text-[80px] uppercase align-middle text-black"
+                class="font-bold text-[80px] uppercase align-middle text-black animate-on-scroll"
+                data-animation="slide-rotate"
+                data-delay="300"
               >
                 TAKING CLEANING <br /><span class="text-orange"
                   >TO THE NEXT LEVEL</span
                 >
               </h1>
               <p
-                class="mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black"
+                class="mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
+                data-animation="fade-up"
+                data-delay="500"
               >
                 Drone-powered cleaning services for <br /> buildings and facades
                 — faster, safer, and <br />more efficient.
               </p>
               <button
-                class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none"
+                class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none btn-animate hover-glow animate-on-scroll"
+                data-animation="fade-up"
+                data-delay="700"
               >
                 Get it
               </button>
@@ -129,7 +162,8 @@ import rightArrow from "../assets/icons/right.svg";
       <div class="swiper-slide">
         <!-- Background Image con width controlado -->
         <div
-          class="absolute inset-0 bg-no-repeat"
+          class="absolute inset-0 bg-no-repeat animate-on-scroll"
+          data-animation="scale-in"
           style={`background-image: url(${bgBanner3.src}); 
                   background-size: auto 100%; 
                   background-position: right center;`}
@@ -150,36 +184,49 @@ import rightArrow from "../assets/icons/right.svg";
         >
           <div
             class="container h-full flex-col flex gap-4 px-4 sm:px-6 lg:px-8 mx-auto py-20 justify-center"
+            data-stagger="200"
           >
-            <div class="z-30 flex items-center space-x-4 m-0 gap-4">
+            <div
+              class="z-30 flex items-center space-x-4 m-0 gap-4 animate-on-scroll"
+              data-animation="fade-left"
+              data-delay="100"
+            >
               <img
                 src={leftArrow.src}
                 alt="Previous"
-                class="swiper-button-prev w-8 h-8 lg:w-10 lg:h-10 group-hover:scale-110 transition-transform duration-300"
+                class="swiper-button-prev w-8 h-8 lg:w-10 lg:h-10 hover-lift transition-transform duration-300"
               />
               <img
                 src={rightArrow.src}
                 alt="Next"
-                class="swiper-button-next w-8 h-8 lg:w-10 lg:h-10 group-hover:scale-110 transition-transform duration-300"
+                class="swiper-button-next w-8 h-8 lg:w-10 lg:h-10 hover-lift transition-transform duration-300"
               />
             </div>
 
             <div class="max-w-2xl lg:max-w-5xl">
               <h1
-                class="font-bold text-[80px] uppercase align-middle text-black"
+                class="font-bold text-[80px] uppercase align-middle text-black animate-on-scroll"
+                data-animation="fade-down"
+                data-delay="300"
               >
-                A Spotless Building,<br /><span class="text-orange"
-                  >Hassle-Free</span
+                A Spotless Building,<br /><span
+                  class="text-orange typewriter-effect"
+                  data-text="Hassle-Free"
+                  data-speed="90">Hassle-Free</span
                 >
               </h1>
               <p
-                class="mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black"
+                class="mb-8 text-normal max-w-xl lg:max-w-2xl font-normal text-[24px] tracking-normal align-middle text-black animate-on-scroll"
+                data-animation="fade-up"
+                data-delay="500"
               >
                 Precision technology and sustainable <br /> processes to protect
                 your infrastructure <br /> and the environment.
               </p>
               <button
-                class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none"
+                class="text-black px-6 py-4 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:bg-opacity-90 bg-blue font-body font-bold text-base leading-none btn-animate hover-glow animate-on-scroll"
+                data-animation="fade-up"
+                data-delay="700"
               >
                 Get it
               </button>
@@ -195,13 +242,19 @@ import rightArrow from "../assets/icons/right.svg";
     <a
       href="https://wa.me/15551234567"
       target="_blank"
-      class="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+      class="w-14 h-14 bg-black hover:bg-black-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
       aria-label="Contact us on WhatsApp"
     >
-      <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
-          d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"
-        ></path>
+          d="M15.5856 11.5787L12.5856 10.0787C12.4675 10.0199 12.3359 9.99325 12.2043 10.0015C12.0726 10.0097 11.9454 10.0525 11.8356 10.1256L10.4584 11.0444C9.82617 10.6968 9.30591 10.1766 8.95837 9.54437L9.87712 8.16719C9.95021 8.05734 9.99303 7.93016 10.0013 7.79848C10.0095 7.6668 9.98284 7.53528 9.92399 7.41719L8.42399 4.41719C8.36182 4.29163 8.26572 4.186 8.14658 4.11226C8.02745 4.03853 7.89004 3.99964 7.74993 4C6.75537 4 5.80154 4.39509 5.09828 5.09835C4.39502 5.80161 3.99993 6.75544 3.99993 7.75C4.00241 9.93727 4.8724 12.0343 6.41904 13.5809C7.96568 15.1275 10.0627 15.9975 12.2499 16C12.7424 16 13.23 15.903 13.685 15.7145C14.14 15.5261 14.5534 15.2499 14.9016 14.9017C15.2498 14.5534 15.526 14.14 15.7145 13.6851C15.9029 13.2301 15.9999 12.7425 15.9999 12.25C16 12.1107 15.9613 11.9741 15.8881 11.8555C15.8149 11.7369 15.7102 11.6411 15.5856 11.5787ZM12.2499 14.5C10.4603 14.498 8.74459 13.7862 7.47915 12.5208C6.21371 11.2553 5.50192 9.5396 5.49993 7.75C5.49979 7.2298 5.6799 6.72562 6.00961 6.32326C6.33933 5.9209 6.79828 5.64521 7.30837 5.54313L8.38462 7.69938L7.46868 9.0625C7.40024 9.16517 7.35818 9.28314 7.34624 9.40596C7.3343 9.52877 7.35285 9.65263 7.40024 9.76656C7.93685 11.0419 8.95145 12.0565 10.2268 12.5931C10.3411 12.6426 10.4659 12.6629 10.5899 12.6521C10.714 12.6413 10.8334 12.5998 10.9374 12.5312L12.3071 11.6181L14.4634 12.6944C14.3605 13.205 14.0836 13.6642 13.6799 13.9935C13.2763 14.3228 12.7709 14.5018 12.2499 14.5ZM9.99993 0.25C8.31662 0.249633 6.66188 0.685083 5.19679 1.51396C3.7317 2.34285 2.50616 3.53692 1.63947 4.97997C0.772772 6.42301 0.294445 8.06587 0.251045 9.74862C0.207644 11.4314 0.600649 13.0967 1.39181 14.5825L0.327743 17.7747C0.239604 18.039 0.226813 18.3226 0.290804 18.5938C0.354795 18.8649 0.493039 19.1129 0.690042 19.3099C0.887044 19.5069 1.13502 19.6451 1.40618 19.7091C1.67733 19.7731 1.96095 19.7603 2.22524 19.6722L5.41743 18.6081C6.72503 19.3036 8.17388 19.6921 9.65402 19.744C11.1342 19.7959 12.6067 19.51 13.9598 18.9079C15.3129 18.3057 16.5111 17.4033 17.4634 16.269C18.4156 15.1346 19.097 13.7983 19.4557 12.3613C19.8144 10.9244 19.841 9.42456 19.5335 7.97578C19.226 6.52701 18.5925 5.16732 17.6811 3.99992C16.7697 2.83253 15.6043 1.88811 14.2733 1.23836C12.9424 0.588614 11.481 0.250608 9.99993 0.25ZM9.99993 18.25C8.5496 18.251 7.12471 17.8691 5.86931 17.1428C5.77739 17.0895 5.6752 17.0563 5.56949 17.0455C5.46379 17.0347 5.357 17.0464 5.25618 17.08L1.74993 18.25L2.91899 14.7438C2.95269 14.643 2.9646 14.5362 2.95394 14.4305C2.94327 14.3248 2.91027 14.2226 2.85712 14.1306C1.94772 12.5584 1.5826 10.7299 1.8184 8.92896C2.0542 7.12801 2.87774 5.4552 4.16126 4.17006C5.44479 2.88491 7.11655 2.05925 8.91721 1.82118C10.7179 1.5831 12.5468 1.94591 14.1202 2.85333C15.6936 3.76074 16.9236 5.16204 17.6193 6.83983C18.3151 8.51762 18.4377 10.3781 17.9681 12.1327C17.4986 13.8873 16.4632 15.4379 15.0224 16.5439C13.5817 17.65 11.8163 18.2497 9.99993 18.25Z"
+          fill="#B3DEFB"></path>
       </svg>
     </a>
   </div>
@@ -216,6 +269,12 @@ import rightArrow from "../assets/icons/right.svg";
     import { Swiper } from "swiper/bundle";
 
     document.addEventListener("DOMContentLoaded", () => {
+      // Crear partículas flotantes
+      const heroParticles = document.getElementById("heroParticles");
+      if (heroParticles && window.AnimationUtils) {
+        window.AnimationUtils.createFloatingParticles(heroParticles, 8);
+      }
+
       const swiper = new Swiper(".hero-swiper", {
         // Enable loop mode with minimum 3 slides
         loop: true,
@@ -245,6 +304,38 @@ import rightArrow from "../assets/icons/right.svg";
         // Speed of transition
         speed: 800,
 
+        // Callbacks para reactivar animaciones en cambio de slide
+        on: {
+          slideChange: function () {
+            // Reset y reactiva animaciones para el slide actual
+            const activeSlide = this.slides[this.activeIndex];
+            if (activeSlide) {
+              const animatedElements =
+                activeSlide.querySelectorAll(".animate-on-scroll");
+              animatedElements.forEach((element) => {
+                // Remover clases de animación
+                element.classList.remove(
+                  "animate-fade-up",
+                  "animate-fade-down",
+                  "animate-fade-left",
+                  "animate-fade-right",
+                  "animate-scale-in",
+                  "animate-slide-rotate",
+                  "animate-fade-in"
+                );
+
+                // Forzar reflow y reagregar
+                void element.offsetWidth;
+
+                setTimeout(() => {
+                  const animationType = element.dataset.animation || "fade-up";
+                  element.classList.add(`animate-${animationType}`);
+                }, 100);
+              });
+            }
+          },
+        },
+
         // Responsive breakpoints
         breakpoints: {
           // Mobile
@@ -268,7 +359,7 @@ import rightArrow from "../assets/icons/right.svg";
         },
       });
 
-      // Smooth scroll for Get it button
+      // Smooth scroll para botones Get it
       const getItButtons = document.querySelectorAll("button");
       getItButtons.forEach((button) => {
         if (button.textContent?.includes("Get it")) {
@@ -287,6 +378,36 @@ import rightArrow from "../assets/icons/right.svg";
           });
         }
       });
+
+      // Configurar efectos de typewriter cuando se activen
+      const typewriterElements =
+        document.querySelectorAll(".typewriter-effect");
+      typewriterElements.forEach((element) => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (
+                entry.isIntersecting &&
+                !element.classList.contains("typed")
+              ) {
+                element.classList.add("typed");
+                if (window.AnimationUtils) {
+                  setTimeout(
+                    () => {
+                      window.AnimationUtils.typeWriter(element);
+                    },
+                    parseInt(element.dataset.delay) || 0
+                  );
+                }
+                observer.unobserve(element);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        observer.observe(element);
+      });
     });
   </script>
 
@@ -299,6 +420,7 @@ import rightArrow from "../assets/icons/right.svg";
       top: auto;
       margin: auto 0;
     }
+
     /* Custom Swiper Styles */
     .hero-swiper {
       width: 100%;
@@ -309,6 +431,86 @@ import rightArrow from "../assets/icons/right.svg";
       display: flex;
       align-items: flex-start;
       flex-direction: column;
+    }
+
+    /* Estilos para partículas flotantes */
+    .floating-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .floating-particles::before,
+    .floating-particles::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(179, 222, 251, 0.3);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-particles::before {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-particles::after {
+      top: 60%;
+      right: 15%;
+      animation-delay: 3s;
+    }
+
+    /* Mejorar el efecto typewriter */
+    .typewriter-effect {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #f07845;
+      animation: blink-caret 1s step-end infinite;
+    }
+
+    .typewriter-effect.typing {
+      border-right: 3px solid #f07845;
+    }
+
+    .typewriter-effect.completed {
+      border-right: none;
+    }
+
+    /* Animaciones mejoradas para elementos */
+    .btn-animate {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-animate::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    .btn-animate:hover::before {
+      left: 100%;
+    }
+
+    /* Optimizaciones de rendimiento */
+    .animate-on-scroll {
+      will-change: transform, opacity;
     }
 
     /* Responsive text sizing */
@@ -335,6 +537,11 @@ import rightArrow from "../assets/icons/right.svg";
         margin-bottom: 2rem;
         justify-content: flex-start;
       }
+
+      .floating-particles::before,
+      .floating-particles::after {
+        display: none; /* Ocultar partículas en móvil para mejor rendimiento */
+      }
     }
 
     @media (max-width: 768px) {
@@ -357,17 +564,15 @@ import rightArrow from "../assets/icons/right.svg";
       }
     }
 
-    /* Smooth animations on load */
-    .hero-swiper h1,
-    .hero-swiper p,
-    .hero-swiper button {
-      animation: fadeInUp 1s ease-out;
+    /* Animación de entrada suave para todo el hero */
+    .hero-height {
+      animation: heroFadeIn 1.2s ease-out;
     }
 
-    @keyframes fadeInUp {
+    @keyframes heroFadeIn {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -390,6 +595,37 @@ import rightArrow from "../assets/icons/right.svg";
       .hero-height {
         height: calc(100vh - 5rem);
         min-height: 600px;
+      }
+    }
+
+    /* Animación del botón WhatsApp */
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Estados para reducción de movimiento */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-scroll,
+      .typewriter-effect,
+      .float-animation,
+      .hero-height {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .floating-particles::before,
+      .floating-particles::after {
+        display: none;
       }
     }
   </style>

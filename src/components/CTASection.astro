@@ -2,38 +2,48 @@
 import aboutImage from "../assets/about.jpg";
 ---
 
-<section class="relative py-24 overflow-hidden">
-  <!-- Background Image -->
-  <div class="absolute inset-0">
-    <img
-      src={aboutImage.src}
-      alt="Drone cleaning technology in action"
-      class="w-full h-full object-cover"
-    />
+<section class="relative py-24 overflow-hidden cta-section">
+  <!-- Background Image simple y directo -->
+  <div
+    class="absolute inset-0 z-0"
+    style={`background-image: url('${aboutImage.src}'); background-size: cover; background-position: center; background-repeat: no-repeat;`}
+  >
   </div>
 
   <!-- Content -->
   <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-center items-center min-h-[60vh]">
-      <!-- White Card -->
-      <div class="bg-white shadow-2xl p-6 max-w-[648px] mx-auto text-center">
+      <!-- White Card con animaciones elegantes -->
+      <div
+        class="bg-white shadow-2xl p-6 max-w-[648px] mx-auto text-center cta-card animate-on-scroll"
+        data-animation="scale-in"
+        data-delay="400"
+      >
         <!-- Main Heading -->
         <h2
-          class="font-heading font-bold text-center align-middle text-[40px] tracking-normal"
+          class="font-heading font-bold text-center align-middle text-[40px] tracking-normal animate-on-scroll"
+          data-animation="fade-up"
+          data-delay="600"
         >
           Discover Cleaning with Drones
         </h2>
 
         <!-- Subtitle -->
         <p
-          class="font-body font-normal text-center align-middle text-[24px] tracking-normal mb-6 mx-auto"
+          class="font-body font-normal text-center align-middle text-[24px] tracking-normal mb-6 mx-auto animate-on-scroll"
+          data-animation="fade-up"
+          data-delay="800"
         >
           Generate curiosity and highlight the use of innovative technology.
         </p>
 
-        <div class="flex justify-center">
+        <div
+          class="flex justify-center animate-on-scroll"
+          data-animation="fade-up"
+          data-delay="1000"
+        >
           <button
-            class="cursor-pointer bg-blue hover:bg-blue/90 text-black font-bold px-4 py-2 rounded-full text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl font-body"
+            class="cursor-pointer bg-blue hover:bg-blue/90 text-black font-bold px-4 py-2 rounded-full text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl font-body cta-button"
           >
             Get it
           </button>
@@ -43,9 +53,101 @@ import aboutImage from "../assets/about.jpg";
   </div>
 </section>
 
+<style>
+  /* Estilos simples para CTA - fondo sin animaciones */
+  .cta-section {
+    position: relative;
+  }
+
+  /* Animaciones solo para la tarjeta */
+  .cta-card {
+    position: relative;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  /* Efecto de hover para la tarjeta */
+  .cta-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 25px 50px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(240, 120, 69, 0.1);
+  }
+
+  /* Efecto de brillo en hover para la tarjeta */
+  .cta-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(240, 120, 69, 0.1),
+      transparent
+    );
+    transition: left 1s ease;
+  }
+
+  .cta-card:hover::before {
+    left: 100%;
+  }
+
+  /* Animaciones del botón */
+  .cta-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: breathe 3s ease-in-out infinite;
+  }
+
+  .cta-button:hover {
+    transform: scale(1.05);
+  }
+
+  .cta-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.4),
+      transparent 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+  }
+
+  .cta-button:hover::after {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Animación de respiración para el botón */
+  @keyframes breathe {
+    0%,
+    100% {
+      box-shadow: 0 4px 15px rgba(179, 222, 251, 0.3);
+    }
+    50% {
+      box-shadow: 0 6px 25px rgba(179, 222, 251, 0.5);
+    }
+  }
+</style>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const ctaButton = document.querySelector("button");
+    const ctaButton = document.querySelector(".cta-button");
 
     // CTA button click - scroll to contact section
     ctaButton?.addEventListener("click", () => {

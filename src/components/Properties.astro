@@ -16,9 +16,13 @@ const imageUrls = {
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
       <!-- Image - Left side (2 columns) -->
-      <div class="lg:col-span-2">
+      <div
+        class="lg:col-span-2 animate-on-scroll"
+        data-animation="fade-right"
+        data-delay="200"
+      >
         <div
-          class="w-full h-[600px]"
+          class="w-full h-[600px] property-image-container hover-glow rounded-lg overflow-hidden shadow-lg"
           data-commercial={imageUrls.commercial}
           data-industrial={imageUrls.industrial}
           data-public={imageUrls.public}
@@ -27,36 +31,50 @@ const imageUrls = {
             id="property-image"
             src={property1.src}
             alt="Commercial and Residential Properties"
-            class="w-full h-full object-cover transition-all duration-500"
+            class="w-full h-full object-cover transition-all duration-700 hover:scale-105"
             style="width: 496px; height: 600px;"
           />
+          <!-- Overlay decorativo -->
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-blue/10 via-transparent to-orange/10 opacity-0 hover:opacity-100 transition-opacity duration-500"
+          >
+          </div>
         </div>
       </div>
 
       <!-- Content - Right side (3 columns) -->
-      <div class="lg:col-span-3 space-y-8">
-        <div>
+      <div class="lg:col-span-3 space-y-8" data-stagger="200">
+        <div
+          class="animate-on-scroll"
+          data-animation="fade-left"
+          data-delay="300"
+        >
           <h2
             class="font-heading text-3xl lg:text-5xl font-bold text-black mb-6"
+            data-word-reveal="true"
           >
             Properties we proudly serve:
           </h2>
-          <!-- Tab Navigation -->
-          <div class="flex flex-wrap gap-3 mb-8">
+          <!-- Tab Navigation con animaciones -->
+          <div
+            class="flex flex-wrap gap-3 mb-8 animate-on-scroll"
+            data-animation="fade-up"
+            data-delay="500"
+          >
             <button
-              class="cursor-pointer property-tab text-xs active bg-blue text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/90"
+              class="cursor-pointer property-tab text-xs active bg-blue text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/90 hover-lift btn-animate"
               data-tab="commercial"
             >
               Commercial and Residential
             </button>
             <button
-              class="cursor-pointer property-tab text-xs bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
+              class="cursor-pointer property-tab text-xs bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80 hover-lift btn-animate"
               data-tab="industrial"
             >
               Industrial and Infrastructure
             </button>
             <button
-              class="cursor-pointer property-tab text-xs bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
+              class="cursor-pointer property-tab text-xs bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80 hover-lift btn-animate"
               data-tab="public"
             >
               Public and Large Spaces
@@ -64,28 +82,77 @@ const imageUrls = {
           </div>
         </div>
 
-        <!-- Tab Content -->
-        <div class="property-content">
+        <!-- Tab Content con animaciones -->
+        <div
+          class="property-content animate-on-scroll"
+          data-animation="fade-up"
+          data-delay="700"
+        >
           <!-- Commercial Content -->
           <div id="commercial-content" class="tab-content active">
-            <p class="font-body text-black font-light leading-relaxed mb-6">
+            <p
+              class="font-body text-black font-light leading-relaxed mb-6 animate-on-scroll"
+              data-animation="fade-up"
+              data-delay="800"
+            >
               We offer facade and window cleaning solutions for buildings up to
               15 floors, owned communities, and leased communities.
             </p>
 
-            <div class="space-y-4">
+            <div
+              class="space-y-4 animate-on-scroll"
+              data-animation="fade-up"
+              data-delay="900"
+            >
               <h4 class="font-heading text-lg font-semibold text-black">
                 Includes:
               </h4>
               <ul
                 class="font-body text-black list-disc list-inside ml-4 font-light"
+                data-stagger="100"
               >
-                <li>Commercial and residential buildings (up to 15 floors)</li>
-                <li>Property owned communities</li>
-                <li>Hotels and resorts</li>
-                <li>Malls and plazas</li>
-                <li>Automotive dealerships</li>
-                <li>Gas stations</li>
+                <li
+                  class="animate-on-scroll list-item"
+                  data-animation="fade-left"
+                  data-delay="1000"
+                >
+                  Commercial and residential buildings (up to 15 floors)
+                </li>
+                <li
+                  class="animate-on-scroll list-item"
+                  data-animation="fade-left"
+                  data-delay="1100"
+                >
+                  Property owned communities
+                </li>
+                <li
+                  class="animate-on-scroll list-item"
+                  data-animation="fade-left"
+                  data-delay="1200"
+                >
+                  Hotels and resorts
+                </li>
+                <li
+                  class="animate-on-scroll list-item"
+                  data-animation="fade-left"
+                  data-delay="1300"
+                >
+                  Malls and plazas
+                </li>
+                <li
+                  class="animate-on-scroll list-item"
+                  data-animation="fade-left"
+                  data-delay="1400"
+                >
+                  Automotive dealerships
+                </li>
+                <li
+                  class="animate-on-scroll list-item"
+                  data-animation="fade-left"
+                  data-delay="1500"
+                >
+                  Gas stations
+                </li>
               </ul>
             </div>
           </div>
@@ -104,16 +171,19 @@ const imageUrls = {
               </h4>
               <ul
                 class="font-body text-black list-disc list-inside ml-4 font-light"
+                data-stagger="100"
               >
-                <li>Warehouses and extensive industrial facilities</li>
-                <li>Greenhouses</li>
-                <li>Factories</li>
-                <li>
+                <li class="list-item">
+                  Warehouses and extensive industrial facilities
+                </li>
+                <li class="list-item">Greenhouses</li>
+                <li class="list-item">Factories</li>
+                <li class="list-item">
                   Government buildings and infrastructure (Municipal, State, and
                   Federal)
                 </li>
-                <li>Energy utility providers</li>
-                <li>Exterior post-construction cleaning</li>
+                <li class="list-item">Energy utility providers</li>
+                <li class="list-item">Exterior post-construction cleaning</li>
               </ul>
             </div>
           </div>
@@ -131,13 +201,14 @@ const imageUrls = {
               </h4>
               <ul
                 class="font-body text-black list-disc list-inside ml-4 font-light"
+                data-stagger="100"
               >
-                <li>University and college campuses</li>
-                <li>Hospitals and clinics</li>
-                <li>Stadiums and arenas</li>
-                <li>Museums and amphitheaters</li>
-                <li>Amusement and theme parks</li>
-                <li>Cruises (for exterior cleaning)</li>
+                <li class="list-item">University and college campuses</li>
+                <li class="list-item">Hospitals and clinics</li>
+                <li class="list-item">Stadiums and arenas</li>
+                <li class="list-item">Museums and amphitheaters</li>
+                <li class="list-item">Amusement and theme parks</li>
+                <li class="list-item">Cruises (for exterior cleaning)</li>
               </ul>
             </div>
           </div>
@@ -154,15 +225,223 @@ const imageUrls = {
   }
 
   .tab-content {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .tab-content.active {
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideInContent 0.6s ease-out forwards;
   }
 
   .tab-content.hidden {
     display: none;
   }
 
+  @keyframes slideInContent {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .property-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
   .property-image-container img {
-    transition: all 0.5s ease-in-out;
+    transition: all 0.7s ease-in-out;
+  }
+
+  /* Efecto de brillo en la imagen */
+  .property-image-container::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 70%
+    );
+    transform: rotate(45deg) translate(-100%, -100%);
+    transition: transform 0.8s ease;
+    opacity: 0;
+  }
+
+  .property-image-container:hover::after {
+    transform: rotate(45deg) translate(100%, 100%);
+    opacity: 1;
+  }
+
+  /* Animaciones para los tabs */
+  .property-tab {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .property-tab::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .property-tab:hover::before {
+    left: 100%;
+  }
+
+  /* Animaciones para las listas */
+  .list-item {
+    position: relative;
+    padding-left: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .list-item::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #f07845;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .list-item:hover {
+    color: #f07845;
+    padding-left: 30px;
+  }
+
+  .list-item:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Efectos de entrada escalonada para listas */
+  .list-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.5s ease-out forwards;
+  }
+
+  .list-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .list-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .list-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .list-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .list-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .list-item:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Efecto de onda en los botones */
+  .property-tab {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .property-tab::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.3),
+      transparent 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+  }
+
+  .property-tab:hover::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Estados de carga para imagen */
+  .property-image-container.loading img {
+    filter: blur(5px);
+    transform: scale(1.05);
+  }
+
+  .property-image-container.loaded img {
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+  /* Mejoras responsive */
+  @media (max-width: 768px) {
+    .list-item {
+      animation-delay: 0s !important;
+    }
+
+    .property-image-container::after {
+      display: none; /* Ocultar efecto de brillo en móvil */
+    }
+  }
+
+  /* Optimización para dispositivos con movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .tab-content,
+    .property-image-container img,
+    .list-item,
+    .property-tab::before,
+    .property-tab::after,
+    .property-image-container::after {
+      animation: none;
+      transition: none;
+    }
+
+    .tab-content.active {
+      opacity: 1;
+      transform: none;
+    }
+
+    .list-item {
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>
 

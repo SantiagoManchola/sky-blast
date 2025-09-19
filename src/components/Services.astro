@@ -54,40 +54,50 @@ const services = [
 <section id="services" class="py-16 lg:py-24 bg-[#B3DEFB1A]">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Title -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-16" data-stagger="300">
       <h2
-        class="text-black font-bold text-[40px] leading-[100%] text-center align-middle mb-4"
+        class="text-black font-bold text-[40px] leading-[100%] text-center align-middle mb-4 animate-on-scroll"
+        data-animation="fade-up"
+        data-delay="200"
       >
         Our services
       </h2>
-      <p class="text-black font-[400] text-[24px] leading-[100%] text-center">
+      <p class="text-black font-[400] text-[24px] leading-[100%] text-center animate-on-scroll"
+         data-animation="fade-up"
+         data-delay="400">
         Services we provide for Exterior Cleaning and Maintenance:
       </p>
     </div>
 
     <!-- Services Swiper -->
-    <div class="relative max-w-7xl mx-auto">
+    <div class="relative max-w-7xl mx-auto animate-on-scroll" data-animation="fade-up" data-delay="600">
       <!-- Swiper -->
       <div class="swiper services-swiper">
         <div class="swiper-wrapper">
           {
             services.map((service, index) => (
               <div class="swiper-slide">
-                <div class="bg-white overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group h-[474px] relative">
+                <div class="bg-white overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group h-[474px] relative hover-lift service-card">
                   <div class="relative h-full overflow-hidden">
                     <img
                       src={service.image.src}
                       alt={service.title}
-                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
 
-                    <div class="absolute bottom-4 left-4 right-4">
-                      <div class="bg-[#FDFDFF] p-4">
-                        <h3 class="font-poppins font-normal text-[24px] leading-[100%] text-black text-center align-middle">
+                    <!-- Overlay con gradiente mejorado -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <div class="absolute bottom-4 left-4 right-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                      <div class="bg-[#FDFDFF] p-4 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="font-poppins font-normal text-[24px] leading-[100%] text-black text-center align-middle group-hover:text-orange transition-colors duration-300">
                           {service.title}
                         </h3>
                       </div>
                     </div>
+
+                    <!-- Efecto de brillo en hover -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                   </div>
                 </div>
               </div>
@@ -95,10 +105,10 @@ const services = [
           }
         </div>
 
-        <!-- Custom Scrollbar Pagination -->
-        <div class="flex justify-center mt-8">
+        <!-- Custom Scrollbar Pagination con animación -->
+        <div class="flex justify-center mt-8 animate-on-scroll" data-animation="fade-up" data-delay="800">
           <div
-            class="services-scrollbar-container relative w-64 h-[5px] bg-blue rounded-full overflow-hidden"
+            class="services-scrollbar-container relative w-64 h-[5px] bg-blue rounded-full overflow-hidden hover-glow"
           >
             <div
               class="services-scrollbar-thumb absolute top-0 left-0 h-full bg-orange rounded-full transition-all duration-300 w-1/3"
@@ -115,6 +125,122 @@ const services = [
   /* Custom scrollbar styling */
   .services-scrollbar-container {
     cursor: pointer;
+    position: relative;
+  }
+
+  .services-scrollbar-container::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #f07845, #b3defb);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .services-scrollbar-container:hover::before {
+    opacity: 0.3;
+  }
+
+  /* Animaciones para las tarjetas de servicio */
+  .service-card {
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  .service-card:nth-child(1) { animation-delay: 0.1s; }
+  .service-card:nth-child(2) { animation-delay: 0.2s; }
+  .service-card:nth-child(3) { animation-delay: 0.3s; }
+  .service-card:nth-child(4) { animation-delay: 0.4s; }
+  .service-card:nth-child(5) { animation-delay: 0.5s; }
+  .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes slideInUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Efecto de hover mejorado */
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(240, 120, 69, 0.1), rgba(179, 222, 251, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Animación del scrollbar thumb */
+  .services-scrollbar-thumb {
+    background: linear-gradient(90deg, #f07845, #e66936);
+    box-shadow: 0 2px 4px rgba(240, 120, 69, 0.3);
+  }
+
+  .services-scrollbar-thumb::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(90deg, #f07845, #e66936);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .services-scrollbar-container:hover .services-scrollbar-thumb::after {
+    opacity: 0.5;
+  }
+
+  /* Animación de pulso para elementos interactivos */
+  .services-scrollbar-container:hover .services-scrollbar-thumb {
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 2px 4px rgba(240, 120, 69, 0.3);
+    }
+    50% {
+      box-shadow: 0 4px 8px rgba(240, 120, 69, 0.5);
+    }
+  }
+
+  /* Mejoras responsive */
+  @media (max-width: 768px) {
+    .service-card {
+      animation-delay: 0s !important;
+    }
+  }
+
+  /* Optimización para dispositivos con movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card {
+      animation: none;
+      transform: none;
+      opacity: 1;
+    }
+    
+    .services-scrollbar-container:hover .services-scrollbar-thumb {
+      animation: none;
+    }
   }
 </style>
 
@@ -137,6 +263,7 @@ const services = [
         spaceBetween: 24,
         autoHeight: false,
         speed: 600,
+        effect: 'slide',
         breakpoints: {
           640: {
             slidesPerView: 2,
@@ -148,6 +275,17 @@ const services = [
           },
         },
         on: {
+          init: function() {
+            // Animar las tarjetas cuando el swiper esté listo
+            setTimeout(() => {
+              const serviceCards = document.querySelectorAll('.service-card');
+              serviceCards.forEach((card, index) => {
+                setTimeout(() => {
+                  (card as HTMLElement).style.animationPlayState = 'running';
+                }, index * 100);
+              });
+            }, 300);
+          },
           slideChange: function (swiper) {
             // Update scrollbar position based on current slide
             if (scrollbarThumb) {
@@ -171,6 +309,22 @@ const services = [
               scrollbarThumb.style.width = `${thumbWidth}%`;
               scrollbarThumb.style.left = `${thumbPosition}%`;
             }
+
+            // Animar nuevas tarjetas visibles
+            const visibleSlides = swiper.slides.slice(
+              swiper.activeIndex, 
+              swiper.activeIndex + (swiper.params.slidesPerView as number || 1)
+            );
+            
+            visibleSlides.forEach((slide, index) => {
+              const card = slide.querySelector('.service-card') as HTMLElement;
+              if (card) {
+                card.style.animation = 'none';
+                void card.offsetHeight; // Forzar reflow
+                card.style.animation = `slideInUp 0.6s ease-out forwards`;
+                card.style.animationDelay = `${index * 0.1}s`;
+              }
+            });
           },
         },
       });
@@ -194,6 +348,15 @@ const services = [
 
           swiperInstance.slideTo(Math.min(targetSlide, maxSlideIndex));
         });
+
+        // Agregar efecto de hover animado
+        scrollbarContainer.addEventListener('mouseenter', () => {
+          scrollbarThumb.style.transform = 'scaleY(1.2)';
+        });
+
+        scrollbarContainer.addEventListener('mouseleave', () => {
+          scrollbarThumb.style.transform = 'scaleY(1)';
+        });
       }
 
       // Initialize scrollbar position
@@ -205,9 +368,26 @@ const services = [
 
         scrollbarThumb.style.width = `${thumbWidth}%`;
         scrollbarThumb.style.left = "0%";
+        scrollbarThumb.style.transition = 'all 0.3s ease';
       }
     };
 
-    initSwiper();
+    // Observar cuando la sección entre en vista para inicializar animaciones
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            initSwiper();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      observer.observe(servicesSection);
+    } else {
+      // Fallback si no hay intersection observer
+      initSwiper();
+    }
   });
 </script>

@@ -10,17 +10,32 @@ import iconPlus from "../assets/icons/about/plus.svg";
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- Content -->
-      <div class="space-y-8 lg:py-14">
-        <div>
-          <h2 class="font-heading text-3xl lg:text-5xl font-bold mb-6">
+      <div class="space-y-8 lg:py-14" data-stagger="200">
+        <div
+          class="animate-on-scroll"
+          data-animation="fade-right"
+          data-delay="200"
+        >
+          <h2
+            class="font-heading text-3xl lg:text-5xl font-bold mb-6"
+            data-word-reveal="true"
+          >
             About us
           </h2>
-          <p class="font-heading text-xl lg:text-2xl mb-8">
+          <p
+            class="font-heading text-xl lg:text-2xl mb-8 animate-on-scroll"
+            data-animation="fade-up"
+            data-delay="400"
+          >
             Outdoor cleaning taken to another level.
           </p>
         </div>
         <div class="space-y-6">
-          <p class="font-body leading-relaxed font-light">
+          <p
+            class="font-body leading-relaxed font-light animate-on-scroll"
+            data-animation="fade-up"
+            data-delay="600"
+          >
             SkyBlast Drone is an innovative exterior cleaning company
             specialized in drone-powered pressure washing. We use advanced drone
             technology to safely and efficiently clean buildings, roofs,
@@ -28,7 +43,11 @@ import iconPlus from "../assets/icons/about/plus.svg";
             the traditional risky, time-consuming, and expensive methods.
           </p>
 
-          <p class="font-body leading-relaxed font-light">
+          <p
+            class="font-body leading-relaxed font-light animate-on-scroll"
+            data-animation="fade-up"
+            data-delay="800"
+          >
             Our services are fast, eco-friendly, and cost-effective, making us
             the smart choice for residential, commercial, and industrial
             properties across Florida. With SkyBlast Drone, you get powerful
@@ -36,55 +55,115 @@ import iconPlus from "../assets/icons/about/plus.svg";
           </p>
         </div>
 
-        <!-- Icons Section -->
+        <!-- Icons Section con animaciones -->
         <div
-          class="flex flex-wrap items-center gap-4 lg:space-x-8 lg:gap-0 pt-8"
+          class="flex flex-wrap items-center gap-4 lg:space-x-8 lg:gap-0 pt-8 animate-on-scroll"
+          data-animation="fade-up"
+          data-delay="1000"
+          data-stagger="150"
         >
           <!-- Drone Icon -->
-          <div class="flex flex-col items-center space-y-2">
-            <div class="w-12 h-12 flex items-center justify-center">
-              <img src={icon1.src} alt="Drone technology" class="w-8 h-8" />
+          <div
+            class="flex flex-col items-center space-y-2 animate-on-scroll icon-container"
+            data-animation="scale-in"
+            data-delay="1100"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center hover-lift bg-blue/10 rounded-full transition-all duration-300 hover:bg-blue/20"
+            >
+              <img
+                src={icon1.src}
+                alt="Drone technology"
+                class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+              />
             </div>
           </div>
 
           <!-- Plus Icon -->
-          <div class="flex flex-col items-center space-y-2">
+          <div
+            class="flex flex-col items-center space-y-2 animate-on-scroll"
+            data-animation="fade-in"
+            data-delay="1200"
+          >
             <div class="w-12 h-12 flex items-center justify-center">
-              <img src={iconPlus.src} alt="Plus" class="w-6 h-6" />
+              <img
+                src={iconPlus.src}
+                alt="Plus"
+                class="w-6 h-6 animate-pulse-subtle"
+              />
             </div>
           </div>
 
           <!-- Water Drop Icon -->
-          <div class="flex flex-col items-center space-y-2">
-            <div class="w-12 h-12 flex items-center justify-center">
-              <img src={icon2.src} alt="Water cleaning" class="w-8 h-8" />
+          <div
+            class="flex flex-col items-center space-y-2 animate-on-scroll icon-container"
+            data-animation="scale-in"
+            data-delay="1300"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center hover-lift bg-blue/10 rounded-full transition-all duration-300 hover:bg-blue/20"
+            >
+              <img
+                src={icon2.src}
+                alt="Water cleaning"
+                class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+              />
             </div>
           </div>
 
           <!-- Plus Icon -->
-          <div class="flex flex-col items-center space-y-2">
+          <div
+            class="flex flex-col items-center space-y-2 animate-on-scroll"
+            data-animation="fade-in"
+            data-delay="1400"
+          >
             <div class="w-12 h-12 flex items-center justify-center">
-              <img src={iconPlus.src} alt="Plus" class="w-6 h-6" />
+              <img
+                src={iconPlus.src}
+                alt="Plus"
+                class="w-6 h-6 animate-pulse-subtle"
+              />
             </div>
           </div>
 
           <!-- Building Icon -->
-          <div class="flex flex-col items-center space-y-2">
-            <div class="w-12 h-12 flex items-center justify-center">
-              <img src={icon3.src} alt="Buildings" class="w-8 h-8" />
+          <div
+            class="flex flex-col items-center space-y-2 animate-on-scroll icon-container"
+            data-animation="scale-in"
+            data-delay="1500"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center hover-lift bg-blue/10 rounded-full transition-all duration-300 hover:bg-blue/20"
+            >
+              <img
+                src={icon3.src}
+                alt="Buildings"
+                class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+              />
             </div>
           </div>
         </div>
       </div>
 
       <!-- Image -->
-      <div class="relative h-full flex justify-center lg:justify-end">
-        <div class="overflow-hidden h-full max-w-[496px] aspect-[496/600]">
+      <div
+        class="relative h-full flex justify-center lg:justify-end animate-on-scroll"
+        data-animation="fade-left"
+        data-delay="300"
+      >
+        <div
+          class="overflow-hidden h-full max-w-[496px] aspect-[496/600] hover-glow rounded-lg shadow-lg"
+        >
           <img
             src={aboutImage.src}
             alt="Drone cleaning in action"
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
           />
+          <!-- Overlay decorativo -->
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-blue/10 via-transparent to-orange/10 opacity-0 hover:opacity-100 transition-opacity duration-500"
+          >
+          </div>
         </div>
       </div>
     </div>
@@ -104,5 +183,159 @@ import iconPlus from "../assets/icons/about/plus.svg";
     50% {
       transform: translateY(-10px);
     }
+  }
+
+  /* Animaciones específicas para AboutUs */
+  .animate-pulse-subtle {
+    animation: pulseSubtle 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseSubtle {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  .text-reveal {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .text-reveal[data-word-reveal="true"] {
+    display: inline-block;
+  }
+
+  /* Efecto especial para iconos */
+  .icon-container {
+    position: relative;
+  }
+
+  .icon-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+      circle,
+      rgba(240, 120, 69, 0.3),
+      transparent 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+    z-index: -1;
+  }
+
+  .icon-container:hover::before {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Animación de entrada escalonada para iconos */
+  .icon-container:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .icon-container:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .icon-container:nth-child(5) {
+    animation-delay: 0.3s;
+  }
+
+  /* Efecto de brillo en la imagen */
+  .about-image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-image::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 70%
+    );
+    transform: rotate(45deg) translate(-100%, -100%);
+    transition: transform 0.8s ease;
+    opacity: 0;
+  }
+
+  .about-image:hover::after {
+    transform: rotate(45deg) translate(100%, 100%);
+    opacity: 1;
+  }
+
+  /* Animación de revelación de texto palabra por palabra */
+  .word-reveal {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: wordReveal 0.6s ease forwards;
+  }
+
+  @keyframes wordReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mejoras responsive */
+  @media (max-width: 768px) {
+    .icon-container::before {
+      display: none; /* Simplificar en móvil */
+    }
+
+    .animate-pulse-subtle {
+      animation-duration: 3s; /* Más lento en móvil para mejor rendimiento */
+    }
+  }
+
+  /* Optimización para dispositivos con movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-pulse-subtle,
+    .icon-container:hover::before,
+    .about-image::after {
+      animation: none;
+      transition: none;
+    }
+
+    .word-reveal {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+
+  /* Estados de hover mejorados */
+  .icon-container:hover img {
+    filter: drop-shadow(0 4px 8px rgba(240, 120, 69, 0.3));
+  }
+
+  /* Transición suave para el contenedor de imagen */
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(240, 120, 69, 0.1);
+    transform: translateY(-2px);
   }
 </style>

@@ -35,6 +35,9 @@ const { title, description, canonical, image, type, noindex } = Astro.props;
   </head>
   <body>
     <slot />
+
+    <!-- Script de animaciones ligero -->
+    <script is:inline src="/src/scripts/animations.js"></script>
   </body>
 </html>
 
