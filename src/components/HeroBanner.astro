@@ -271,8 +271,8 @@ import rightArrow from "../assets/icons/right.svg";
     document.addEventListener("DOMContentLoaded", () => {
       // Crear partículas flotantes
       const heroParticles = document.getElementById("heroParticles");
-      if (heroParticles && window.AnimationUtils) {
-        window.AnimationUtils.createFloatingParticles(heroParticles, 8);
+      if (heroParticles && (window as any).AnimationUtils) {
+        (window as any).AnimationUtils.createFloatingParticles(heroParticles, 8);
       }
 
       const swiper = new Swiper(".hero-swiper", {
@@ -391,13 +391,30 @@ import rightArrow from "../assets/icons/right.svg";
                 !element.classList.contains("typed")
               ) {
                 element.classList.add("typed");
-                if (window.AnimationUtils) {
+                const htmlElement = element as HTMLElement;
+                // Verificar que AnimationUtils esté disponible y tenga la función
+                if ((window as any).AnimationUtils && typeof (window as any).AnimationUtils.typeWriter === 'function') {
                   setTimeout(
                     () => {
-                      window.AnimationUtils.typeWriter(element);
+                      (window as any).AnimationUtils.typeWriter(element);
                     },
-                    parseInt(element.dataset.delay) || 0
+                    parseInt(htmlElement.dataset.delay || "0") || 0
                   );
+                } else {
+                  // Fallback simple si AnimationUtils no está disponible
+                  const text = htmlElement.dataset.text || element.textContent || "";
+                  const speed = parseInt(htmlElement.dataset.speed || "80") || 80;
+                  
+                  element.textContent = "";
+                  let i = 0;
+                  const timer = setInterval(() => {
+                    if (i < text.length) {
+                      element.textContent += text.charAt(i);
+                      i++;
+                    } else {
+                      clearInterval(timer);
+                    }
+                  }, speed);
                 }
                 observer.unobserve(element);
               }

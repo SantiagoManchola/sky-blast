@@ -219,6 +219,29 @@ const AnimationUtils = {
     }
   },
 
+  // Efecto typewriter
+  typeWriter(element) {
+    const text = element.dataset.text || element.textContent;
+    const speed = parseInt(element.dataset.speed) || 50;
+
+    element.textContent = "";
+    element.style.borderRight = "2px solid #f07845";
+
+    let i = 0;
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(timer);
+        // Opcional: remover el cursor después de completar
+        setTimeout(() => {
+          element.style.borderRight = "none";
+        }, 1000);
+      }
+    }, speed);
+  },
+
   // Efecto parallax simple
   setupParallax(elements) {
     const handleScroll = () => {
