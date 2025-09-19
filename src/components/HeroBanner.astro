@@ -272,7 +272,10 @@ import rightArrow from "../assets/icons/right.svg";
       // Crear partículas flotantes
       const heroParticles = document.getElementById("heroParticles");
       if (heroParticles && (window as any).AnimationUtils) {
-        (window as any).AnimationUtils.createFloatingParticles(heroParticles, 8);
+        (window as any).AnimationUtils.createFloatingParticles(
+          heroParticles,
+          8
+        );
       }
 
       const swiper = new Swiper(".hero-swiper", {
@@ -393,7 +396,11 @@ import rightArrow from "../assets/icons/right.svg";
                 element.classList.add("typed");
                 const htmlElement = element as HTMLElement;
                 // Verificar que AnimationUtils esté disponible y tenga la función
-                if ((window as any).AnimationUtils && typeof (window as any).AnimationUtils.typeWriter === 'function') {
+                if (
+                  (window as any).AnimationUtils &&
+                  typeof (window as any).AnimationUtils.typeWriter ===
+                    "function"
+                ) {
                   setTimeout(
                     () => {
                       (window as any).AnimationUtils.typeWriter(element);
@@ -402,9 +409,11 @@ import rightArrow from "../assets/icons/right.svg";
                   );
                 } else {
                   // Fallback simple si AnimationUtils no está disponible
-                  const text = htmlElement.dataset.text || element.textContent || "";
-                  const speed = parseInt(htmlElement.dataset.speed || "80") || 80;
-                  
+                  const text =
+                    htmlElement.dataset.text || element.textContent || "";
+                  const speed =
+                    parseInt(htmlElement.dataset.speed || "80") || 80;
+
                   element.textContent = "";
                   let i = 0;
                   const timer = setInterval(() => {
