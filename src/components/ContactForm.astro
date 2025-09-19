@@ -386,23 +386,48 @@ import contactImage from "../assets/contact.jpg";
       const data = Object.fromEntries(formData.entries());
 
       try {
-        // Here you would typically send to your email service
-        // For demo purposes, we'll simulate a successful submission
-        await simulateFormSubmission(data);
-
-        createNotification(
-          "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.",
-          "success"
-        );
-        form.reset();
-
-        // Reset field styles
-        formFields.forEach((field) => {
-          field.classList.remove("border-green-500", "border-red-500");
+        // Send to Resend API endpoint
+        const response = await fetch("/api/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         });
+
+        const result = await response.json();
+
+        if (result.success) {
+          createNotification(
+            "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours. Please check your email for a confirmation.",
+            "success"
+          );
+          form.reset();
+
+          // Reset field styles
+          formFields.forEach((field) => {
+            field.classList.remove("border-green-500", "border-red-500");
+          });
+        } else {
+          // Handle validation errors from server
+          if (result.errors && Array.isArray(result.errors)) {
+            const errorMessage = result.errors.join(". ");
+            createNotification(
+              `Please fix the following errors: ${errorMessage}`,
+              "error"
+            );
+          } else {
+            createNotification(
+              result.error ||
+                "Sorry, there was an error sending your message. Please try again.",
+              "error"
+            );
+          }
+        }
       } catch (error) {
+        console.error("Form submission error:", error);
         createNotification(
-          "Sorry, there was an error sending your message. Please try again or contact us directly.",
+          "Sorry, there was a network error. Please check your connection and try again, or contact us directly.",
           "error"
         );
       } finally {
@@ -412,21 +437,6 @@ import contactImage from "../assets/contact.jpg";
         loadingText.classList.add("hidden");
       }
     });
-
-    // Simulate form submission (replace with actual email service integration)
-    async function simulateFormSubmission(data: Record<string, any>) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          // Simulate 95% success rate
-          if (Math.random() > 0.05) {
-            console.log("Form submitted:", data);
-            resolve(data);
-          } else {
-            reject(new Error("Simulated error"));
-          }
-        }, 2000);
-      });
-    }
   });
 </script>
 

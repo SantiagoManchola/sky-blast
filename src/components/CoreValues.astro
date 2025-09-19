@@ -11,17 +11,20 @@ const coreValues = [
   {
     icon: icon1,
     title: "Safety First",
-    description: "We reduce risks with drone technology that keeps people and property safe.",
+    description:
+      "We reduce risks with drone technology that keeps people and property safe.",
   },
   {
     icon: icon2,
-    title: "Eco-Responsibility", 
-    description: "We clean responsibly using less water and biodegradable solutions.",
+    title: "Eco-Responsibility",
+    description:
+      "We clean responsibly using less water and biodegradable solutions.",
   },
   {
     icon: icon3,
     title: "Innovation & Technology",
-    description: "We lead with advanced drone systems for fast, efficient results.",
+    description:
+      "We lead with advanced drone systems for fast, efficient results.",
   },
   {
     icon: icon4,
@@ -31,24 +34,25 @@ const coreValues = [
   {
     icon: icon5,
     title: "Integrity & Professional ",
-    description: "We operate with transparency, deliver on our promises, and uphold high standards in every aspect of our business.",
+    description:
+      "We operate with transparency, deliver on our promises, and uphold high standards in every aspect of our business.",
   },
 ];
 ---
 
-<section class="pb-16 lg:pb-24 ">
+<section class="pb-16 lg:pb-24">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Title -->
     <div class="text-center mb-16">
       <h2
-        class="font-heading text-3xl lg:text-5xl font-bold text-black mb-4"
+        class="text-black mb-4 font-normal text-[24px] leading-[1] text-center font-poppins"
       >
         Our Core Values
       </h2>
     </div>
 
     <!-- Values Swiper -->
-    <div class="relative ">
+    <div class="relative">
       <!-- Swiper -->
       <div class="swiper values-swiper">
         <div class="swiper-wrapper">
@@ -56,20 +60,19 @@ const coreValues = [
             coreValues.map((value, index) => (
               <div class="swiper-slide h-auto">
                 <div class="bg-white border border-blue rounded p-6 h-full flex flex-col min-h-[200px]">
-                  <!-- Icon -->
                   <div class="flex justify-start mb-4">
-                    <img 
-                      src={value.icon.src} 
+                    <img
+                      src={value.icon.src}
                       alt={value.title}
                       class="w-6 h-6 text-primary"
                     />
                   </div>
-                  
-                  <h3 class="font-heading text-xl font-bold text-orange mb-3">
+
+                  <h3 class="font-poppins font-bold text-[16px] leading-[1] align-middle mb-3 text-orange">
                     {value.title}
                   </h3>
-                  
-                  <p class="font-body text-black leading-relaxed text-sm flex-grow">
+
+                  <p class="font-light text-[16px] align-middle tracking-normal">
                     {value.description}
                   </p>
                 </div>
