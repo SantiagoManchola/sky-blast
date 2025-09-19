@@ -15,49 +15,60 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
       <!-- Logo Section -->
       <div class="lg:col-span-1">
         <!-- Logo with both images -->
-        <div class="flex items-center space-x-3 mb-8">
-          <img src={logoSvg.src} alt="SkyBlast Logo" class="w-12 h-12" />
+        <div class="flex items-start gap-3 flex-col mb-8">
+          <img src={logoSvg.src} alt="SkyBlast Logo" class="w-[148px]" />
           <img src={skyBlastPng.src} alt="SkyBlast Text" class="h-8" />
         </div>
 
         <!-- Social Media Section -->
         <div>
-          <p class="font-body text-gray-900 font-medium mb-4">Síguenos en:</p>
+          <p class="font-body text-black font-medium mb-4">Síguenos en:</p>
           <div class="flex space-x-3">
             <a
-              href="#"
+              href="https://www.linkedin.com/in/skyblast-drone-aa36a7374/"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300"
               aria-label="LinkedIn"
             >
               <img src={linkedinIcon.src} alt="LinkedIn" class="w-4 h-4" />
             </a>
             <a
-              href="#"
-              class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300"
-              aria-label="YouTube"
-            >
-              <img src={youtubeIcon.src} alt="YouTube" class="w-4 h-4" />
-            </a>
-            <a
-              href="#"
+              href="https://www.tiktok.com/@skyblastdrone"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300"
               aria-label="TikTok"
             >
               <img src={tiktokIcon.src} alt="TikTok" class="w-4 h-4" />
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/skyblastdrone"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300"
               aria-label="Facebook"
             >
               <img src={facebookIcon.src} alt="Facebook" class="w-4 h-4" />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/skyblastdrone"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300"
               aria-label="Instagram"
             >
               <img src={instagramIcon.src} alt="Instagram" class="w-4 h-4" />
+            </a>
+            <a
+              href="https://nextdoor.com/profile/skyblastdrone"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300 text-xs font-bold text-gray-600"
+              aria-label="NextDoor"
+              title="NextDoor"
+            >
+              ND
             </a>
           </div>
         </div>
@@ -65,12 +76,12 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
 
       <!-- Menu Section -->
       <div class="lg:col-span-1">
-        <h3 class="font-body text-gray-900 font-semibold text-lg mb-6">Menu</h3>
-        <ul class="space-y-4">
+        <h3 class="font-body text-black font-semibold text-lg mb-6">Menu</h3>
+        <ul>
           <li>
             <a
               href="#about"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               About us
             </a>
@@ -78,7 +89,7 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
           <li>
             <a
               href="#services"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               Our Services
             </a>
@@ -86,7 +97,7 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
           <li>
             <a
               href="#clients"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               Our Clients
             </a>
@@ -94,7 +105,7 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
           <li>
             <a
               href="#contact"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               Contact Us
             </a>
@@ -104,41 +115,35 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
 
       <!-- Contact Information Section -->
       <div class="lg:col-span-1">
-        <h3 class="font-body text-gray-900 font-semibold text-lg mb-6">
+        <h3 class="font-body text-black font-semibold text-lg mb-6">
           Contact information
         </h3>
         <div class="space-y-4">
           <div>
-            <h4 class="font-body text-gray-900 font-medium mb-1">Address</h4>
-            <p class="font-body text-gray-600 text-sm">
-              123 Main Street<br />
-              Miami, FL 33101<br />
-              United States
+            <h4 class="font-body text-black font-bold mb-1">Address</h4>
+            <p class="font-body text-black text-sm">
+              2278 Stonehedge Loop, Kissimmee, <br /> FL 34743 <br /> United States
             </p>
           </div>
           <div>
-            <h4 class="font-body text-gray-900 font-medium mb-1">
-              Phone number
-            </h4>
-            <p class="font-body text-gray-600 text-sm">+1 (305) 123-4567</p>
+            <h4 class="font-body text-black font-bold mb-1">Phone number</h4>
+            <p class="font-body text-black text-sm">xxx xxxx</p>
           </div>
           <div>
-            <h4 class="font-body text-gray-900 font-medium mb-1">WhatsApp</h4>
-            <p class="font-body text-gray-600 text-sm">+1 (305) 123-4567</p>
+            <h4 class="font-body text-black font-bold mb-1">WhatsApp</h4>
+            <p class="font-body text-black text-sm">xxx xxxx</p>
           </div>
         </div>
       </div>
 
       <!-- Legal Section -->
       <div class="lg:col-span-1">
-        <h3 class="font-body text-gray-900 font-semibold text-lg mb-6">
-          Legal
-        </h3>
-        <ul class="space-y-4">
+        <h3 class="font-body text-black font-semibold text-lg mb-6">Legal</h3>
+        <ul>
           <li>
             <a
               href="#"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               Legal notice
             </a>
@@ -146,7 +151,7 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
           <li>
             <a
               href="#"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               Privacy policy
             </a>
@@ -154,7 +159,7 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
           <li>
             <a
               href="#"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               Cookie policy
             </a>
@@ -162,7 +167,7 @@ import instagramIcon from "../assets/icons/rrss/ig.svg";
           <li>
             <a
               href="#"
-              class="font-body text-gray-600 hover:text-primary transition-colors duration-300"
+              class="font-body text-black hover:text-orange transition-colors duration-300"
             >
               Accessibility
             </a>

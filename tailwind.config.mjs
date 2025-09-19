@@ -3,14 +3,6 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
-      colors: {
-        "orange-crayola": "#F07845",
-        "rich-black": "#000517",
-        "uranian-blue": "#B3DEFB",
-        primary: "#F07845",
-        secondary: "#000517",
-        accent: "#B3DEFB",
-      },
       fontFamily: {
         "space-grotesk": ["Space Grotesk", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],

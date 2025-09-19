@@ -1,48 +1,43 @@
 ---
-// No props needed
+// Import property images
+import property1 from "../assets/images/properties/1.jpg";
+import property2 from "../assets/images/properties/2.jpg";
+import property3 from "../assets/images/properties/3.jpg";
+
+// Image URLs for script access
+const imageUrls = {
+  commercial: property1.src,
+  industrial: property2.src,
+  public: property3.src,
+};
 ---
 
 <section id="clients" class="py-16 lg:py-24 bg-accent/10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <!-- Image -->
-      <div class="relative">
+    <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+      <!-- Image - Left side (2 columns) -->
+      <div class="lg:col-span-2">
         <div
-          class="property-image-container aspect-[4/3] rounded-2xl overflow-hidden"
+          class="w-full h-[600px]"
+          data-commercial={imageUrls.commercial}
+          data-industrial={imageUrls.industrial}
+          data-public={imageUrls.public}
         >
           <img
             id="property-image"
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            src={property1.src}
             alt="Commercial and Residential Properties"
             class="w-full h-full object-cover transition-all duration-500"
+            style="width: 496px; height: 600px;"
           />
-        </div>
-
-        <!-- Floating stats -->
-        <div
-          class="absolute -top-6 -right-6 bg-white rounded-2xl p-6 shadow-lg"
-        >
-          <div class="text-center">
-            <div class="text-2xl font-bold text-primary">15+</div>
-            <div class="text-sm text-gray-600">Floors</div>
-          </div>
-        </div>
-
-        <div
-          class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-lg"
-        >
-          <div class="text-center">
-            <div class="text-2xl font-bold text-primary">100%</div>
-            <div class="text-sm text-gray-600">Safe</div>
-          </div>
         </div>
       </div>
 
-      <!-- Content -->
-      <div class="space-y-8">
+      <!-- Content - Right side (3 columns) -->
+      <div class="lg:col-span-3 space-y-8">
         <div>
           <h2
-            class="font-heading text-3xl lg:text-5xl font-bold text-secondary mb-6"
+            class="font-heading text-3xl lg:text-5xl font-bold text-black mb-6"
           >
             Properties we proudly serve:
           </h2>
@@ -50,19 +45,19 @@
           <!-- Tab Navigation -->
           <div class="flex flex-wrap gap-3 mb-8">
             <button
-              class="property-tab active bg-secondary text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-secondary/90"
+              class="property-tab active bg-blue text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/90"
               data-tab="commercial"
             >
               Commercial and Residential
             </button>
             <button
-              class="property-tab bg-accent text-secondary px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-accent/80"
+              class="property-tab bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
               data-tab="industrial"
             >
               Industrial and Infrastructure
             </button>
             <button
-              class="property-tab bg-accent text-secondary px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-accent/80"
+              class="property-tab bg-blue text-black px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-blue/80"
               data-tab="public"
             >
               Public and Large Spaces
@@ -74,232 +69,62 @@
         <div class="property-content">
           <!-- Commercial Content -->
           <div id="commercial-content" class="tab-content active">
-            <p class="font-body text-gray-600 leading-relaxed mb-6">
+            <p class="font-body text-black leading-relaxed mb-6">
               We offer facade and window cleaning solutions for buildings up to
               15 floors, owned communities, and leased communities.
             </p>
 
             <div class="space-y-4">
-              <h4 class="font-heading text-lg font-semibold text-secondary">
+              <h4 class="font-heading text-lg font-semibold text-black">
                 Includes:
               </h4>
-              <ul class="space-y-3 font-body text-gray-600">
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span
-                    >Commercial and residential buildings (up to 15 floors)</span
-                  >
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Property owned communities</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Hotels and resorts</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Malls and plazas</span>
-                </li>
+              <ul class="space-y-3 font-body text-black">
+                <li>Commercial and residential buildings (up to 15 floors)</li>
+                <li>Property owned communities</li>
+                <li>Hotels and resorts</li>
+                <li>Malls and plazas</li>
               </ul>
             </div>
           </div>
 
           <!-- Industrial Content -->
           <div id="industrial-content" class="tab-content hidden">
-            <p class="font-body text-gray-600 leading-relaxed mb-6">
+            <p class="font-body text-black leading-relaxed mb-6">
               Specialized cleaning services for industrial facilities and
               critical infrastructure requiring precision and safety protocols.
             </p>
 
             <div class="space-y-4">
-              <h4 class="font-heading text-lg font-semibold text-secondary">
+              <h4 class="font-heading text-lg font-semibold text-black">
                 Includes:
               </h4>
-              <ul class="space-y-3 font-body text-gray-600">
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Manufacturing facilities</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Warehouses and distribution centers</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Power plants and utilities</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Automotive dealerships</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Gas stations</span>
-                </li>
+              <ul class="space-y-3 font-body text-black">
+                <li>Manufacturing facilities</li>
+                <li>Warehouses and distribution centers</li>
+                <li>Power plants and utilities</li>
+                <li>Automotive dealerships</li>
+                <li>Gas stations</li>
               </ul>
             </div>
           </div>
 
           <!-- Public Content -->
           <div id="public-content" class="tab-content hidden">
-            <p class="font-body text-gray-600 leading-relaxed mb-6">
+            <p class="font-body text-black leading-relaxed mb-6">
               Comprehensive cleaning solutions for public buildings and
               large-scale facilities serving communities across Florida.
             </p>
 
             <div class="space-y-4">
-              <h4 class="font-heading text-lg font-semibold text-secondary">
+              <h4 class="font-heading text-lg font-semibold text-black">
                 Includes:
               </h4>
-              <ul class="space-y-3 font-body text-gray-600">
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Government buildings</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Schools and universities</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Hospitals and healthcare facilities</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Sports complexes and stadiums</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                  <svg
-                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Convention centers</span>
-                </li>
+              <ul class="space-y-3 font-body text-black">
+                <li>Government buildings</li>
+                <li>Schools and universities</li>
+                <li>Hospitals and healthcare facilities</li>
+                <li>Sports complexes and stadiums</li>
+                <li>Convention centers</li>
               </ul>
             </div>
           </div>
@@ -312,7 +137,7 @@
 <style>
   .property-tab.active {
     background-color: #000517;
-    color: white;
+    color: #fdfdff;
   }
 
   .tab-content {
@@ -333,21 +158,19 @@
     const tabs = document.querySelectorAll(".property-tab");
     const contents = document.querySelectorAll(".tab-content");
     const image = document.getElementById("property-image") as HTMLImageElement;
+    const imageContainer = image?.parentElement;
 
     const tabData = {
       commercial: {
-        image:
-          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        image: imageContainer?.getAttribute("data-commercial") || "",
         alt: "Commercial and Residential Properties",
       },
       industrial: {
-        image:
-          "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        image: imageContainer?.getAttribute("data-industrial") || "",
         alt: "Industrial and Infrastructure",
       },
       public: {
-        image:
-          "https://images.unsplash.com/photo-1515378791036-0648a814c963?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        image: imageContainer?.getAttribute("data-public") || "",
         alt: "Public and Large Spaces",
       },
     };
@@ -357,7 +180,7 @@
       tabs.forEach((tab) => {
         tab.classList.remove("active");
         tab.classList.remove("bg-secondary", "text-white");
-        tab.classList.add("bg-accent", "text-secondary");
+        tab.classList.add("bg-accent", "text-black");
       });
 
       // Hide all content
@@ -377,7 +200,7 @@
       if (activeTab) {
         activeTab.classList.add("active");
         activeTab.classList.add("bg-secondary", "text-white");
-        activeTab.classList.remove("bg-accent", "text-secondary");
+        activeTab.classList.remove("bg-accent", "text-black");
       }
 
       if (activeContent) {

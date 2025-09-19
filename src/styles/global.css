@@ -1,7 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
 
-/* Custom base styles */
+@theme {
+  --color-orange: #f07845;
+  --color-black: #000517;
+  --color-blue: #b3defb;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -22,7 +27,6 @@ h4,
 h5,
 h6 {
   font-family: "Space Grotesk", sans-serif;
-  font-weight: 600;
 }
 
 /* Custom scrollbar */
