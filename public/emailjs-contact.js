@@ -1,5 +1,6 @@
 // EmailJS Contact Form Handler
-import emailjs from "@emailjs/browser";
+// Usar EmailJS desde CDN global
+const emailJSService = window.emailjs;
 
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
@@ -10,7 +11,7 @@ const EMAILJS_CONFIG = {
 };
 
 // Initialize EmailJS
-emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+emailJSService.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
 // Location and Service name mappings (same as before)
 const serviceNames = {
@@ -271,7 +272,7 @@ async function sendEmail(formData) {
 
   try {
     // Send main email
-    const emailResponse = await emailjs.send(
+    const emailResponse = await emailJSService.send(
       EMAILJS_CONFIG.SERVICE_ID,
       EMAILJS_CONFIG.TEMPLATE_ID,
       templateParams
@@ -295,7 +296,7 @@ async function sendEmail(formData) {
         submitted_date: new Date().toLocaleDateString("en-US"),
       };
 
-      const autoReplyResponse = await emailjs.send(
+      const autoReplyResponse = await emailJSService.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.AUTO_REPLY_TEMPLATE_ID,
         autoReplyParams
@@ -329,7 +330,7 @@ async function sendEmail(formData) {
 }
 
 // Initialize form functionality
-export function initContactForm() {
+function initContactForm() {
   const form = document.getElementById("contact-form");
   if (!form) return;
 

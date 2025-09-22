@@ -38,6 +38,15 @@ const { title, description, canonical, image, type, noindex } = Astro.props;
 
     <!-- Script de animaciones ligero -->
     <script is:inline src="/animations.js"></script>
+
+    <!-- Load EmailJS from CDN -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+
+    <!-- Load our contact form script -->
+    <script is:inline src="/emailjs-contact.js"></script>
   </body>
 </html>
 
