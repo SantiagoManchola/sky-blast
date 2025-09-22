@@ -2,13 +2,13 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
+// import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://sky-blast.vercel.app", // Replace with your actual domain
-  output: "server", // Enable SSR for API routes
-  adapter: vercel(),
+  site: "https://skyblastdrone.com", // https://sky-blast.vercel.app
+  output: "static", // default is "server" when using an adapter
+  // adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],
   },
@@ -20,8 +20,8 @@ export default defineConfig({
       lastmod: new Date(),
       entryLimit: 10000,
       serialize(item) {
-        // Customize sitemap entries
-        if (item.url === "https://sky-blast.vercel.app/") {
+        // Changed from sky-blast.vercel.app
+        if (item.url === "https://skyblastdrone.com/") {
           item.priority = 1.0;
         }
         return item;

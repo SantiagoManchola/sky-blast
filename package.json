@@ -12,11 +12,11 @@
     "@astrojs/node": "^9.4.3",
     "@astrojs/sitemap": "^3.5.1",
     "@astrojs/vercel": "^8.2.7",
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.13",
     "@types/leaflet": "^1.9.20",
     "astro": "^5.13.7",
     "leaflet": "^1.9.4",
-    "resend": "^6.1.0",
     "swiper": "^12.0.1",
     "tailwindcss": "^4.1.13"
   }

@@ -19,7 +19,6 @@ import contactImage from "../assets/contact.jpg";
             alt="Professional drone cleaning services"
             class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
           />
-          <!-- Overlay decorativo -->
           <div
             class="absolute inset-0 bg-gradient-to-tr from-blue/10 via-transparent to-orange/10 opacity-0 hover:opacity-100 transition-opacity duration-500"
           >
@@ -134,7 +133,7 @@ import contactImage from "../assets/contact.jpg";
               <span class="error-message text-red-500 text-sm block h-5"></span>
             </div>
 
-            <!-- Custom Location Field (Hidden by default) -->
+            <!-- Custom Location Field -->
             <div id="custom-location-field" style="display: none;">
               <label
                 for="custom-location"
@@ -192,7 +191,6 @@ import contactImage from "../assets/contact.jpg";
               </select>
               <span class="error-message text-red-500 text-sm block h-5"></span>
             </div>
-
             <!-- Submit Button -->
             <button
               type="submit"
@@ -204,9 +202,6 @@ import contactImage from "../assets/contact.jpg";
               <span class="submit-text">Send</span>
               <span class="loading-text hidden">Sending...</span>
             </button>
-
-            <!-- Success/Error Messages -->
-            <!-- Professional notification will be created dynamically -->
           </form>
         </div>
       </div>
@@ -215,400 +210,12 @@ import contactImage from "../assets/contact.jpg";
 
   <!-- Professional Notification Container -->
   <div id="notification-container" class="fixed top-4 right-4 z-1000 space-y-4">
-    <!-- Notifications will be dynamically inserted here -->
   </div>
 </section>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("contact-form") as HTMLFormElement;
-
-    // Professional notification system
-    function createNotification(
-      message: string,
-      type: "success" | "error" | "info"
-    ) {
-      const container = document.getElementById("notification-container");
-      if (!container) return;
-
-      const notification = document.createElement("div");
-      notification.className = `
-        notification-toast
-        max-w-sm w-full
-        bg-white border-l-4 rounded-lg shadow-xl
-        transform transition-all duration-500 ease-in-out
-        translate-x-full opacity-0
-        p-4 relative
-        ${
-          type === "success"
-            ? "border-green-500"
-            : type === "error"
-              ? "border-red-500"
-              : "border-blue-500"
-        }
-      `;
-
-      const iconColor =
-        type === "success"
-          ? "text-green-500"
-          : type === "error"
-            ? "text-red-500"
-            : "text-blue-500";
-
-      const bgColor =
-        type === "success"
-          ? "bg-green-50"
-          : type === "error"
-            ? "bg-red-50"
-            : "bg-blue-50";
-
-      notification.innerHTML = `
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <div class="w-8 h-8 rounded-full ${bgColor} flex items-center justify-center">
-              ${
-                type === "success"
-                  ? `
-                <svg class="w-5 h-5 ${iconColor}" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-              `
-                  : type === "error"
-                    ? `
-                <svg class="w-5 h-5 ${iconColor}" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-              `
-                    : `
-                <svg class="w-5 h-5 ${iconColor}" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                </svg>
-              `
-              }
-            </div>
-          </div>
-          <div class="ml-3 flex-1">
-            <p class="text-sm font-medium text-gray-900 leading-relaxed">
-              ${message}
-            </p>
-          </div>
-          <div class="ml-4 flex-shrink-0">
-            <button 
-              class="close-btn inline-flex text-gray-400 hover:text-gray-600 focus:outline-none transition-colors duration-200"
-              onclick="closeNotification(this)"
-            >
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      `;
-
-      container.appendChild(notification);
-
-      // Animate in
-      setTimeout(() => {
-        notification.classList.remove("translate-x-full", "opacity-0");
-        notification.classList.add("translate-x-0", "opacity-100");
-      }, 100);
-
-      // Auto close after 5 seconds
-      setTimeout(() => {
-        closeNotification(notification.querySelector(".close-btn"));
-      }, 5000);
-    }
-
-    // Global function to close notifications
-    const closeNotification = function (button: HTMLElement | null) {
-      if (!button) return;
-      const notification = button.closest(".notification-toast");
-      if (notification) {
-        notification.classList.add("translate-x-full", "opacity-0");
-        setTimeout(() => {
-          notification.remove();
-        }, 300);
-      }
-    };
-
-    // Make function available globally for onclick handlers
-    (window as any).closeNotification = closeNotification;
-
-    // Form validation rules
-    interface ValidationRule {
-      required: boolean;
-      minLength?: number;
-      pattern?: RegExp;
-      message: string;
-    }
-
-    const validationRules: Record<string, ValidationRule> = {
-      name: {
-        required: true,
-        minLength: 2,
-        message: "Name must be at least 2 characters long",
-      },
-      email: {
-        required: true,
-        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        message: "Please enter a valid email address",
-      },
-      location: {
-        required: true,
-        message: "Please select your county",
-      },
-      customLocation: {
-        required: false, // Will be set to true dynamically when "other" is selected
-        minLength: 2,
-        message: "Please specify your county (at least 2 characters)",
-      },
-      service: {
-        required: true,
-        message: "Please select a service",
-      },
-    };
-
-    // Validation function
-    function validateField(field: HTMLInputElement | HTMLSelectElement) {
-      const rule = validationRules[field.name];
-      if (!rule) return true;
-
-      const errorElement = field.parentElement?.querySelector(
-        "span.error-message"
-      ) as HTMLElement;
-      if (!errorElement) {
-        console.warn(`Error element not found for field: ${field.name}`);
-        return true;
-      }
-
-      let isValid = true;
-      let message = "";
-
-      // Special handling for customLocation field
-      if (field.name === "customLocation") {
-        const locationSelect = form.querySelector(
-          'select[name="location"]'
-        ) as HTMLSelectElement;
-        const isOtherSelected =
-          locationSelect && locationSelect.value === "Other";
-
-        if (!isOtherSelected) {
-          // If "Other" is not selected, always consider this field valid
-          isValid = true;
-        } else if (!field.value.trim()) {
-          isValid = false;
-          message = rule.message;
-        } else if (rule.minLength && field.value.length < rule.minLength) {
-          isValid = false;
-          message = rule.message;
-        }
-      } else {
-        // Regular validation for other fields
-        if (rule.required && !field.value.trim()) {
-          isValid = false;
-          message = rule.message;
-        } else if (
-          rule.pattern &&
-          field.value &&
-          !rule.pattern.test(field.value)
-        ) {
-          isValid = false;
-          message = rule.message;
-        } else if (rule.minLength && field.value.length < rule.minLength) {
-          isValid = false;
-          message = rule.message;
-        }
-      }
-
-      if (isValid) {
-        field.classList.remove("border-red-500");
-        field.classList.add("border-green-500");
-        errorElement.textContent = "";
-      } else {
-        field.classList.remove("border-green-500");
-        field.classList.add("border-red-500");
-        errorElement.textContent = message;
-      }
-
-      return isValid;
-    }
-
-    // Add real-time validation
-    const formFields = form.querySelectorAll("input, select");
-    formFields.forEach((field) => {
-      field.addEventListener("blur", () =>
-        validateField(field as HTMLInputElement | HTMLSelectElement)
-      );
-
-      // Add different event listeners for different field types
-      if (field.tagName === "SELECT") {
-        field.addEventListener("change", () =>
-          validateField(field as HTMLInputElement | HTMLSelectElement)
-        );
-      } else {
-        field.addEventListener("input", () => {
-          if (field.classList.contains("border-red-500")) {
-            validateField(field as HTMLInputElement | HTMLSelectElement);
-          }
-        });
-      }
-    });
-
-    // Handle location dropdown change
-    const locationSelect = form.querySelector(
-      'select[name="location"]'
-    ) as HTMLSelectElement;
-    const customLocationField = form.querySelector(
-      "#custom-location-field"
-    ) as HTMLDivElement;
-    const customLocationInput = form.querySelector(
-      'input[name="customLocation"]'
-    ) as HTMLInputElement;
-
-    if (locationSelect && customLocationField && customLocationInput) {
-      function toggleCustomLocation() {
-        const isOtherSelected = locationSelect.value === "Other";
-        customLocationField.style.display = isOtherSelected ? "block" : "none";
-
-        if (!isOtherSelected) {
-          customLocationInput.value = "";
-          // Remove any validation styles when hiding
-          customLocationInput.classList.remove(
-            "border-red-500",
-            "border-green-500"
-          );
-          const errorMsg =
-            customLocationInput.parentElement?.querySelector(".error-message");
-          if (errorMsg) errorMsg.textContent = "";
-        } else {
-          // Add event listeners when field becomes visible
-          customLocationInput.addEventListener("blur", () =>
-            validateField(customLocationInput)
-          );
-          customLocationInput.addEventListener("input", () => {
-            if (customLocationInput.classList.contains("border-red-500")) {
-              validateField(customLocationInput);
-            }
-          });
-        }
-      }
-
-      // Initial setup
-      toggleCustomLocation();
-
-      // Listen for changes
-      locationSelect.addEventListener("change", toggleCustomLocation);
-    }
-
-    // Form submission
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // Validate all fields
-      let isFormValid = true;
-      formFields.forEach((field) => {
-        if (!validateField(field as HTMLInputElement | HTMLSelectElement)) {
-          isFormValid = false;
-        }
-      });
-
-      // Special validation for customLocation when "Other" is selected
-      if (
-        locationSelect &&
-        locationSelect.value === "Other" &&
-        customLocationInput
-      ) {
-        if (!validateField(customLocationInput)) {
-          isFormValid = false;
-        }
-      }
-
-      if (!isFormValid) {
-        createNotification("Please fix the errors above.", "error");
-        return;
-      }
-
-      // Show loading state
-      const submitButton = form.querySelector(
-        'button[type="submit"]'
-      ) as HTMLButtonElement;
-      const submitText = submitButton.querySelector(
-        ".submit-text"
-      ) as HTMLElement;
-      const loadingText = submitButton.querySelector(
-        ".loading-text"
-      ) as HTMLElement;
-
-      submitButton.disabled = true;
-      submitText.classList.add("hidden");
-      loadingText.classList.remove("hidden");
-
-      // Collect form data
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-
-      try {
-        // Send to Resend API endpoint
-        const response = await fetch("/api/send-email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          createNotification(
-            "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours. Please check your email for a confirmation.",
-            "success"
-          );
-          form.reset();
-
-          // Reset field styles and hide custom location field
-          formFields.forEach((field) => {
-            field.classList.remove("border-green-500", "border-red-500");
-          });
-
-          // Hide custom location field after reset
-          if (customLocationField) {
-            customLocationField.style.display = "none";
-          }
-        } else {
-          // Handle validation errors from server
-          if (result.errors && Array.isArray(result.errors)) {
-            const errorMessage = result.errors.join(". ");
-            createNotification(
-              `Please fix the following errors: ${errorMessage}`,
-              "error"
-            );
-          } else {
-            createNotification(
-              result.error ||
-                "Sorry, there was an error sending your message. Please try again.",
-              "error"
-            );
-          }
-        }
-      } catch (error) {
-        console.error("Form submission error:", error);
-        createNotification(
-          "Sorry, there was a network error. Please check your connection and try again, or contact us directly.",
-          "error"
-        );
-      } finally {
-        // Reset button state
-        submitButton.disabled = false;
-        submitText.classList.remove("hidden");
-        loadingText.classList.add("hidden");
-      }
-    });
-  });
-</script>
+<script src="/src/scripts/emailjs-contact.js" type="module"></script>
 
 <style>
-  /* Custom select arrow */
   select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
     background-position: right 0.5rem center;
@@ -620,7 +227,6 @@ import contactImage from "../assets/contact.jpg";
     appearance: none;
   }
 
-  /* Focus states */
   input:focus,
   select:focus,
   textarea:focus {
@@ -628,7 +234,6 @@ import contactImage from "../assets/contact.jpg";
     box-shadow: 0 0 0 3px rgba(240, 120, 69, 0.1);
   }
 
-  /* Loading animation */
   .loading-text {
     animation: pulse 1.5s ease-in-out infinite;
   }
