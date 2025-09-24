@@ -4,10 +4,10 @@ const emailJSService = window.emailjs;
 
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
-  PUBLIC_KEY: "AYU-PV5RC_n-gGyOl",
-  SERVICE_ID: "service_2ju2hnv",
-  TEMPLATE_ID: "template_po63045",
-  AUTO_REPLY_TEMPLATE_ID: "template_jdo9ssf",
+  PUBLIC_KEY: "pwkX_4Me1eA5z55_g",
+  SERVICE_ID: "service_eegtw5u",
+  TEMPLATE_ID: "template_7bg5y0h",
+  AUTO_REPLY_TEMPLATE_ID: "template_mgkx3jq",
 };
 
 // Initialize EmailJS
