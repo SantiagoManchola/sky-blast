@@ -32,6 +32,20 @@ const { title, description, canonical, image, type, noindex } = Astro.props;
       type={type}
       noindex={noindex}
     />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFZH3VR0M3"
+    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFZH3VR0M3"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-KFZH3VR0M3");
+    </script>
   </head>
   <body>
     <slot />
